@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>חוט של תקווה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Rubik:wght@400;500;700&display=swap">
+<style>
+/* Layout: sticky brand bar + tab strip; each lesson is a projected slide (text beside a blended watercolor) with an optional facilitator panel. Single warm-paper look, light only by design. */
+:root{
+  --paper:#FAFAF7; --paper2:#F4EFE6; --card:#FFFFFF; --ink:#2B2422; --ink2:#5A514D;
+  --bordeaux:#7D1C2A; --bordeaux-d:#651521; --olive:#5C6228; --gold:#C89B3C;
+  --olive-t:#F1F2E8; --rose-t:#F6ECEA; --line:#E4DDD0;
+  --display:'Frank Ruhl Libre',"David Libre",Georgia,serif;
+  --body:Rubik,"Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--body);font-size:18px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card)}
+*{box-sizing:border-box}
+h1,h2,h3{font-family:var(--display);color:var(--bordeaux);margin:0;line-height:1.15;text-wrap:balance}
+p{margin:0}
+a{color:var(--bordeaux)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:8px;max-width:1500px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none}
+[hidden]{display:none!important}
+.brand img{width:58px;height:46px;object-fit:contain}
+.brand b{font-family:var(--display);font-size:24px;color:var(--bordeaux);white-space:nowrap}
+.spacer{flex:1}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:17px;font-weight:500;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--bordeaux);background:var(--card);color:var(--bordeaux);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--rose-t)}
+.btn.solid{background:var(--bordeaux);color:#fff}
+.btn.solid:hover{background:var(--bordeaux-d)}
+.btn.quiet{border-color:#CFC8BA;color:var(--ink)}
+.btn.on{background:var(--olive);border-color:var(--olive);color:#fff}
+.btn.olive{border-color:var(--olive);color:var(--olive)}
+.btn.big{font-size:21px;min-height:54px;padding:0 28px}
+.btn:disabled{opacity:.4;cursor:default}
+.tabs{overflow-x:auto;scrollbar-width:thin;border-top:1px solid var(--line);background:var(--paper)}
+.tabs ul{list-style:none;margin:0 auto;padding:0;display:flex;gap:4px;max-width:1500px}
+.tabs a{display:flex;align-items:center;gap:6px;padding:12px 14px;font-size:17px;font-weight:500;color:var(--ink2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs a img{width:22px;height:22px}
+.tabs a[aria-current="page"]{color:var(--bordeaux);border-bottom-color:var(--bordeaux)}
+.tabs a:hover{color:var(--bordeaux)}
+main{max-width:1500px;margin:0 auto;padding-block:20px 48px}
+
+/* home */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px;align-items:center}
+.hero .t{display:flex;flex-direction:column;gap:16px}
+.hero .t img.logo{width:180px;height:auto}
+.eyebrow{font-size:19px;font-weight:500;color:var(--olive);letter-spacing:.3px}
+.hero h1{font-size:clamp(48px,6vw,88px);line-height:1}
+.hero p{font-size:clamp(20px,1.8vw,26px);color:var(--ink2)}
+.art{margin:0;display:flex;align-items:center;justify-content:center;min-width:0;min-height:0}
+.art img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:28px}
+.lcard{background:var(--card);border:1.5px solid var(--bordeaux);border-radius:20px;padding:16px 12px 18px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;text-decoration:none;color:var(--ink)}
+.lcard:hover{background:var(--rose-t)}
+.lcard img{width:96px;height:96px}
+.lcard small{font-size:15px;font-weight:500;color:var(--olive)}
+.lcard strong{font-family:var(--display);font-size:22px;color:var(--bordeaux);line-height:1.2}
+.thread{margin-top:18px;text-align:center}
+.thread img{width:100%;max-width:900px;height:auto}
+.thread span{display:block;font-size:16px;color:var(--olive)}
+.homeacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;justify-content:center}
+
+/* counselor */
+.cs{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px}
+.cs h2{font-size:38px}
+.badge{font-size:14px;color:var(--olive);border:1px solid var(--olive);border-radius:999px;padding:3px 10px;font-family:var(--body)}
+.ck{display:flex;align-items:flex-start;gap:12px;font-size:18px;line-height:1.45;cursor:pointer;padding:6px 0}
+.ck input{width:22px;height:22px;margin:3px 0 0;accent-color:var(--olive);flex:none}
+.group{display:flex;flex-direction:column;gap:8px}
+.group > span{font-weight:500}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:17px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid #CFC8BA;background:var(--card);color:var(--ink);cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--olive);border-color:var(--olive);color:#fff}
+.contact{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:18px;padding:10px 14px}
+.contact img{width:96px;height:96px}
+.note{background:var(--olive-t);border-radius:16px;padding:14px 18px}
+
+/* lesson */
+.lesson{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.lesson.withguide{grid-template-columns:minmax(0,1fr) 340px}
+.stage{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.slide{position:relative;min-height:min(68vh,640px);display:flex;flex-direction:column}
+.slide .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.slide > *:not(.bg){position:relative;z-index:1}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;flex:1;align-items:center;padding:32px 40px}
+.split.port{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.split .txt{display:flex;flex-direction:column;gap:16px;min-width:0}
+.split .art img{max-height:min(60vh,580px)}
+.pad{padding:32px 44px;display:flex;flex-direction:column;gap:18px;flex:1}
+.sh{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sh h2{font-size:clamp(34px,3.6vw,56px)}
+.sh .time{margin-inline-start:auto}
+.time{font-size:18px;font-weight:500;color:var(--olive);border:1.5px solid var(--olive);border-radius:999px;padding:4px 14px;white-space:nowrap}
+.lead{font-size:clamp(21px,2vw,30px);line-height:1.5}
+.lead strong{color:var(--bordeaux)}
+.kicker{font-size:clamp(18px,1.5vw,23px);font-weight:500;color:var(--olive)}
+.q{font-size:clamp(20px,1.9vw,28px);line-height:1.4;background:var(--card);border-radius:18px;padding:14px 20px}
+.q.olive{background:var(--olive-t)}
+.q.rose{background:var(--rose-t);color:var(--bordeaux);font-weight:500}
+.herogrid{display:flex;align-items:center;gap:40px;padding:40px 56px;flex:1;flex-wrap:wrap}
+.herogrid .bead{width:clamp(140px,18vw,240px);height:auto;flex:none}
+.herogrid .t{display:flex;flex-direction:column;gap:16px;flex:1;min-width:260px}
+.herogrid h1{font-size:clamp(44px,5vw,74px)}
+.msg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;padding:40px;flex:1}
+.wash{position:relative;padding:16px 44px;display:inline-block}
+.wash img{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.wash h2,.wash span,.wash a{position:relative;z-index:1}
+.wash h2{color:#fff;font-size:clamp(34px,4vw,60px)}
+.ocards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ocard{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:12px 12px 18px;cursor:pointer;display:flex;flex-direction:column;gap:10px;text-align:center;color:var(--ink)}
+.ocard:hover,.ocard[aria-pressed="true"]{border-color:var(--bordeaux)}
+.ocard img{width:100%;aspect-ratio:16/10;object-fit:contain}
+.ocard b{font-family:var(--display);font-size:clamp(24px,2.2vw,32px);color:var(--bordeaux)}
+.ocard small{font-size:17px;color:var(--olive);font-weight:500}
+.ocard .rec{align-self:center;font-size:15px;color:#fff;background:var(--olive);border-radius:999px;padding:3px 12px}
+.agrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.agree{font-size:clamp(20px,1.8vw,26px);min-height:80px;border-radius:20px;border:1.5px dashed #CFC8BA;background:var(--card);color:var(--ink);cursor:pointer;padding:12px 18px;display:flex;align-items:center;gap:14px;text-align:right}
+.agree[aria-pressed="true"]{border-style:solid;border-color:var(--olive);background:var(--olive-t)}
+.agree .mk{width:30px;height:30px;border-radius:50%;border:2px solid #CFC8BA;flex:none}
+.agree[aria-pressed="true"] .mk{border-color:var(--olive);background:var(--olive)}
+.field{font-size:21px;min-height:54px;border-radius:16px;border:1.5px solid #CFC8BA;padding:0 16px;background:var(--card);color:var(--ink);width:100%;font-family:inherit}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.scale{display:flex;flex-direction:column;gap:10px}
+.srow{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px;align-items:center;background:var(--card);border-radius:16px;padding:10px 20px}
+.srow span{font-size:clamp(19px,1.7vw,24px);line-height:1.3}
+.srow input{width:100%;accent-color:var(--bordeaux);height:32px}
+.ends{display:flex;justify-content:space-between;font-size:18px;color:var(--olive);padding-inline-start:340px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:clamp(18px,1.6vw,23px);background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 18px}
+.chip.btnchip{cursor:pointer;color:var(--ink)}
+.chip.btnchip[aria-pressed="true"]{background:var(--olive);border-color:var(--olive);color:#fff}
+.bigcard{background:var(--card);border:1.5px solid var(--line);border-radius:24px;padding:26px 34px;font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,40px);color:var(--bordeaux);text-align:center;line-height:1.3;max-width:820px;margin:0 auto;width:100%}
+.knot{display:flex;align-items:center;gap:48px;padding:36px 56px;flex:1;flex-wrap:wrap}
+.knot .orb{position:relative;width:min(300px,60vw);aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex:none}
+.knot .orb .sp{position:absolute;inset:0;width:100%;height:100%}
+.knot .orb .b{position:relative;width:70%}
+.knot h2{font-size:clamp(52px,6vw,84px)}
+.letter{display:flex;flex-direction:column;flex:1}
+.letter .hd{position:relative;display:flex;align-items:center;justify-content:center;height:190px}
+.letter .hd img{max-height:100%;max-width:100%}
+.letter .hd h2{position:absolute;font-size:clamp(36px,3.6vw,50px)}
+.letter .bd{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 40px;padding:10px 48px 28px;font-size:clamp(19px,1.7vw,24px);line-height:1.45}
+.letter .bd strong{color:var(--bordeaux)}
+.letter .full{grid-column:1/-1;color:var(--olive)}
+.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.col{background:var(--card);border-radius:20px;padding:20px 24px;display:flex;flex-direction:column;gap:10px;font-size:clamp(20px,1.8vw,25px)}
+.col.rose{background:var(--rose-t)}
+.col b{font-family:var(--display);font-size:clamp(26px,2.4vw,32px);color:var(--olive)}
+.col.rose b{color:var(--bordeaux)}
+.fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.fc{position:relative;min-height:280px;border-radius:22px;border:1.5px solid var(--bordeaux);overflow:hidden;cursor:pointer;padding:0;background:var(--card);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.fc .back{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fc .in{position:relative;margin:0 18px;background:rgba(255,255,255,.95);border-radius:16px;padding:16px;font-size:clamp(20px,1.8vw,26px);font-weight:500}
+.fc .open{position:absolute;inset:0;background:var(--olive-t);display:flex;flex-direction:column;justify-content:center;gap:14px;padding:18px;text-align:center}
+.fc .open span:first-child{font-size:clamp(20px,1.8vw,26px);font-weight:500}
+.fc .open span:last-child{font-size:clamp(18px,1.6vw,22px);color:var(--olive)}
+.bubble{position:relative;flex:1;display:flex;align-items:center;justify-content:center;min-height:300px}
+.bubble img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.bubble p{position:relative;max-width:520px;text-align:center;font-family:var(--display);font-weight:700;font-size:clamp(24px,2.4vw,34px);line-height:1.3;color:var(--bordeaux);white-space:pre-line;padding:0 40px}
+.plgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.plank{background:var(--card);border:1.5px solid var(--gold);border-radius:16px;padding:12px 16px;cursor:pointer;display:flex;flex-direction:column;gap:6px;text-align:right;color:var(--ink);min-height:100px}
+.plank[aria-pressed="true"]{background:#FBF4E4}
+.plank strong{font-size:clamp(20px,1.8vw,25px);color:var(--bordeaux)}
+.plank span{font-size:clamp(18px,1.6vw,23px)}
+.vgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.beadv{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink)}
+.beadv img{width:90px;height:90px}
+.beadv b{font-family:var(--display);font-size:24px;color:var(--bordeaux)}
+.beadv span{font-size:28px;font-weight:700;color:var(--olive);font-variant-numeric:tabular-nums}
+.rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rc{position:relative;min-height:120px;border-radius:16px;border:1.5px solid var(--line);overflow:hidden;cursor:pointer;padding:0;background:var(--card);color:var(--ink)}
+.rc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rc div{position:absolute;inset:0;background:#FBF4E4;display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:clamp(17px,1.5vw,21px);line-height:1.35;font-weight:500;text-align:center}
+.strip{height:44px;overflow:hidden;border-top:1px solid var(--line)}
+.strip img{width:100%;height:44px;object-fit:cover}
+.nav{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--card);border-top:1px solid var(--line)}
+.dots{flex:1;display:flex;justify-content:center;align-items:center;flex-wrap:wrap}
+.dot{width:28px;height:44px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.dot i{display:block;width:13px;height:13px;border-radius:50%;background:#D8D2C6}
+.dot[aria-current="step"] i{background:var(--bordeaux);transform:scale(1.25)}
+.count{font-size:16px;color:var(--ink2);margin-inline-start:10px;font-variant-numeric:tabular-nums}
+.guide{background:var(--olive-t);border:1px solid #DCDDCB;border-radius:20px;padding:18px 20px;font-size:16px;line-height:1.6;align-self:start;position:sticky;top:150px;max-height:calc(100vh - 170px);overflow:auto}
+.guide .lbl{font-size:13px;font-weight:700;color:var(--olive);letter-spacing:.5px;margin-bottom:8px}
+.guide p{margin:0 0 10px}
+.guide h4{margin:12px 0 4px;font-size:16px;color:var(--bordeaux)}
+.guide .box{background:var(--card);border-radius:10px;padding:8px 10px;margin-bottom:10px}
+
+/* strengths */
+.kh{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.kh img{height:120px;width:auto}
+.kh h1{font-size:clamp(40px,4vw,54px);color:#7A3E80}
+.kh span{font-size:22px;color:#C2405F;font-weight:500}
+.jumps{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.jumps a{font-size:17px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--c);color:var(--c);display:inline-flex;align-items:center;text-decoration:none;background:var(--card)}
+.sec{border:3px solid var(--c);border-radius:28px;background:var(--card);overflow:hidden;margin-top:28px;padding-bottom:22px}
+.sec .cl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 22px;background:var(--t);border-bottom:3px solid var(--c);margin-bottom:16px}
+.sec .cl img{width:42px;height:42px}
+.sec .cl h2{font-size:clamp(28px,2.8vw,36px);color:var(--c)}
+.tag{font-size:16px;color:var(--c);border:1.5px solid var(--c);border-radius:999px;padding:4px 14px;background:var(--card);font-weight:500}
+.sec .sub{margin:0 22px 14px;font-style:italic;font-size:19px}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:18px;padding:0 22px}
+.lc{position:relative;background:var(--card);border:2px solid var(--c);border-top-width:10px;border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;font-size:19px;line-height:1.55}
+.lc h3{font-size:26px;color:var(--c);padding-left:70px}
+.lc .st{position:absolute;top:14px;left:14px;font-size:13px;color:var(--c);background:var(--t);border-radius:999px;padding:3px 10px}
+.lc .take{background:var(--t);border-radius:12px;padding:10px 14px;font-size:18px}
+.lc .btn{border-color:var(--c);color:var(--c);align-self:flex-start}
+
+/* print tab */
+.doc{max-width:820px;margin:0 auto;background:var(--card);border-radius:18px;padding:48px 56px;font-size:17px;line-height:1.65}
+.doc h2{font-size:28px;margin:34px 0 8px}
+.doc h3{font-size:21px;margin:22px 0 6px}
+.doc p{margin:6px 0}
+.doc .gl{background:var(--olive-t);border-radius:10px;padding:10px 14px;margin:8px 0;font-size:15px}
+.doc .box{border:1px solid #CFC8BA;border-radius:10px;padding:12px 16px;margin:12px 0}
+.doc .cb{display:inline-block;width:14px;height:14px;border:1.5px solid var(--olive);border-radius:3px;margin-inline-end:8px;vertical-align:-2px}
+.doc .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.doc .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.printbar{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(43,36,34,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.dlg{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--card);border-radius:24px;padding:28px 34px;display:flex;flex-direction:column;gap:14px}
+.dlg h2{font-size:34px}
+.dlg ol{margin:0;padding-inline-start:26px;font-size:21px;line-height:1.6}
+
+@media (prefers-reduced-motion:no-preference){.fade{animation:fd .35s ease}.pop{animation:pp .6s ease}}
+@keyframes fd{from{opacity:0}to{opacity:1}}
+@keyframes pp{0%{opacity:0;transform:scale(.6)}70%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+
+@media (max-width:1100px){.lesson.withguide{grid-template-columns:minmax(0,1fr)}.guide{position:static;max-height:none}}
+@media (max-width:900px){
+  .hero,.cs{grid-template-columns:minmax(0,1fr)}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .split,.split.port{grid-template-columns:minmax(0,1fr);padding:22px 20px}
+  .split .art img{max-height:46vh}
+  .pad{padding:22px 20px}
+  .herogrid,.knot{padding:24px 20px;gap:20px}
+  .ocards,.fgrid,.rgrid{grid-template-columns:minmax(0,1fr)}
+  .agrid,.cols2,.plgrid,.letter .bd{grid-template-columns:minmax(0,1fr)}
+  .vgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .srow{grid-template-columns:minmax(0,1fr)}
+  .ends{padding-inline-start:0}
+  .letter .bd{padding:10px 20px 22px}
+  .doc{padding:28px 20px}
+  .doc .row3,.doc .row2{grid-template-columns:minmax(0,1fr)}
+  .acts .btn{font-size:15px;padding:0 12px}
+}
+@media print{
+  .top,.printbar,.modal{display:none!important}
+  html,body{background:#fff}
+  main{padding:0}
+  .doc{border-radius:0;padding:0;max-width:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar gut">
+    <a class="brand" href="#home" aria-label="חוט של תקווה, לדף הבית">
+      <img src="images/logo-nophone.webp" alt="">
+      <b>חוט של תקווה</b>
+    </a>
+    <div class="spacer"></div>
+    <div class="acts">
+      <button class="btn quiet" id="tgBasic" type="button" aria-pressed="false" hidden>התאמה ליסודי</button>
+      <button class="btn quiet" id="tgGuide" type="button" aria-pressed="true">מסך מנחה</button>
+      <button class="btn solid" id="openWhat" type="button">מה עושים עכשיו</button>
+    </div>
+  </div>
+  <nav class="tabs gut" aria-label="לשוניות">
+    <ul id="tabs"></ul>
+  </nav>
+</header>
+
+<main class="gut" id="main"></main>
+<div id="modal"></div>
+
+<script>
+(function(){
+const IMG = n => 'images/' + n;
+const store = {
+  get(){ try { return JSON.parse(localStorage.getItem('chut-tikva') || '{}'); } catch(e){ return {}; } },
+  set(v){ try { localStorage.setItem('chut-tikva', JSON.stringify(v)); } catch(e){} }
+};
+const saved = store.get();
+const S = Object.assign({
+  sector:'general', classType:'mixed', guide:true, basic:false, mode:'prevention',
+  checks:[false,false,false,false,false,false,false], done:[false,false,false,false,false]
+}, saved);
+S.tab = 'home'; S.modal = null;
+const L = {1:{},2:{},3:{},4:{},5:{}};
+for (const k in L) L[k] = { k:0 };
+function persist(){ store.set({sector:S.sector,classType:S.classType,guide:S.guide,basic:S.basic,mode:S.mode,checks:S.checks,done:S.done}); }
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pick = (f,m,x) => S.classType==='girls' ? f : (S.classType==='boys' ? m : x);
+const dig = () => S.sector !== 'haredi';
+
+const TABS = [
+  ['home','בית',null],['counselor','ליועץ/ת',null],
+  ['lesson1','מפגש 1','bead-1.webp'],['lesson2','מפגש 2','bead-2.webp'],['lesson3','מפגש 3','bead-3.webp'],['lesson4','מפגש 4','bead-4.webp'],['lesson5','מפגש 5','bead-5.webp'],
+  ['strengths','הכוחות שבדרך',null],['print','הדפסה',null]
+];
+const BEADS = ['bead-1.webp','bead-2.webp','bead-3.webp','bead-4.webp','bead-5.webp'];
+const DIVIDERS = ['thread-divider-1.webp','thread-divider-2.webp','thread-divider-3.webp','thread-divider-4.webp','thread-divider-5.webp'];
+const LTITLES = ['החוט הראשון: מה עושה לי טוב','הרשת שמחזיקה אותי','הכוחות שכבר יש בי','הפצע והדרך לרפא','חבר בשביל חבר'];
+const LWORDS = ['הטוב','הקשר','הכוח','הריפוי','העזרה'];
+const BEADCOL = ['צהוב חרדל','בורדו','ירוק זית','ורוד עתיק','זהב'];
+
+/* ---------- shared slide parts ---------- */
+const img = (n, alt) => `<img src="${IMG(n)}" alt="${esc(alt||'')}"${alt?'':' aria-hidden="true"'}>`;
+const art = (n, alt) => `<figure class="art">${img(n, alt)}</figure>`;
+const head = (t, time) => `<div class="sh"><h2>${t}</h2>${time?`<span class="time">${time}</span>`:''}</div>`;
+const split = (txt, n, alt, port) => `<div class="split${port?' port':''}"><div class="txt">${txt}</div>${art(n, alt)}</div>`;
+const gate = (bg, bead, beadAlt, kicker, title, lead) => `<img class="bg" src="${IMG(bg)}" alt=""><div class="herogrid"><img class="bead" src="${IMG(bead)}" alt="${beadAlt}"><div class="t"><span class="kicker">${kicker}</span><h1>${title}</h1><p class="lead">${lead}</p></div></div>`;
+const agreeRecap = () => `<div class="pad">${head('ההסכמות שלנו')}<div class="agrid"><div class="q">מקשיבים זה לזה</div><div class="q">מכבדים כל אחד ואחת</div><div class="q">מה שנאמר כאן, נשאר כאן</div><div class="q">מדברים על עצמנו</div></div><p class="lead" style="color:var(--olive)">ועוד מה שהוספנו יחד במפגש הראשון.</p></div>`;
+const week = (n, word, lead) => `<div class="herogrid"><img class="bead" src="${IMG(BEADS[n-2])}" alt="החרוז מהמפגש הקודם"><div class="t"><span class="kicker">הקשר מהשבוע</span><h2 style="font-size:clamp(38px,4vw,58px)">איפה פגשתי השבוע את "${word}"?</h2><p class="lead">${lead}</p></div></div>`;
+const message = (bg, wash, big, small, kicker) => `<img class="bg" src="${IMG(bg)}" alt=""><div class="msg"><span class="kicker">${kicker||'מסר מרכזי'}</span><div class="wash"><img src="${IMG(wash)}" alt=""><h2>${big}</h2></div><p class="lead" style="max-width:920px">${small}</p></div>`;
+const knot = (n, st, extra) => {
+  const tied = st.tied;
+  return `<div class="knot"><div class="orb">${tied?`<img class="sp pop" src="${IMG('ui-sparkle.webp')}" alt="">`:''}<img class="b" src="${IMG(BEADS[n-1])}" alt="חרוז ${BEADCOL[n-1]}"></div><div class="t" style="display:flex;flex-direction:column;gap:16px;flex:1;min-width:260px"><span class="kicker">קושרים קשר ${['ראשון','שני','שלישי','רביעי','חמישי'][n-1]}</span><h2>${LWORDS[n-1]}</h2><p class="lead">${pick('כל אחת קושרת','כל אחד קושר','כל אחד/ת קושר/ת')} <strong>חרוז ${BEADCOL[n-1]}</strong> לחוט.</p>${extra||''}${tied?`<p class="lead fade" style="color:var(--olive);font-weight:500">${['החרוז הראשון על החוט.','שני חרוזים על החוט.','שלושה חרוזים על החוט.','ארבעה חרוזים על החוט.','חמישה חרוזים. החוט שלם.'][n-1]}</p>`:`<button class="btn solid big" style="align-self:flex-start" data-act="tie">קושרים את החרוז</button>`}</div></div>`;
+};
+const letter = (did, q, extra) => `<div class="letter"><div class="hd"><img src="${IMG('parents-header.webp')}" alt=""><h2>מכתב להורים</h2></div><div class="bd">${did}<div><strong>שאלה לשיחה בבית:</strong> ${q}</div>${extra||''}<div class="full">נשמח לעמוד לרשותכם בכל שאלה: [שם היועץ/ת] · [דרך ליצירת קשר]</div></div></div>`;
+const endSlide = (next, n, strengths, imgName, alt) => `${split(`<h2 style="font-size:clamp(38px,4vw,58px)">${n===5?'החוט ממשיך איתנו':'שומרים עד הפעם הבאה'}</h2><p class="lead">${n===5?'חמישה חרוזים: הטוב, הקשר, הכוח, הריפוי והעזרה.':'את החוטים שומרים במעטפה עם השם, עד המפגש הבא.'}</p>${next?`<p class="lead" style="color:var(--olive)">${next}</p>`:''}<div class="row">${n<5?`<a class="btn solid big" href="#lesson${n+1}">למפגש ${n+1}</a>`:''}<a class="btn big" href="#home">לדף הבית</a>${strengths?`<a class="btn olive big" href="#strengths">להמשך הדרך: הכוחות שבדרך</a>`:''}</div>`, imgName||'envelopes.webp', alt||'מעטפות עם חוטים וחרוזים בתוך קופסת עץ', true)}`;
+const reveal = (shown, txt, btn, act, cls) => shown ? `<div class="q ${cls||'olive'} fade">${txt}</div>` : `<button class="btn olive" style="align-self:flex-start" data-act="${act}">${btn}</button>`;
+const basicNote = t => S.basic ? `<h4>התאמה ליסודי (כיתה ו')</h4><p>${t}</p>` : '';
+
+/* ---------- lessons ---------- */
+const LESSONS = {};
+
+LESSONS[1] = {
+  ids:['gate','choose','opener','agree','flags','scale','msg','knot','letter','end'],
+  titles:['פתיחה','בחירת פתיח','הפתיח','ההסכמות שלנו','דגלוני השמחה','ציר השמחה','מסר מרכזי','קושרים קשר','מכתב להורים','סיום'],
+  init:{opener:'a',q:false,flagN:1,agree:[false,false,false,false],extra:'',scale:[50,50,50,50],scaleMsg:false,tied:false},
+  slide(id, st){
+    switch(id){
+      case 'gate': return gate('bg-3.jpg','bead-1.webp','חרוז צהוב חרדל עם שמש זהובה','מפגש 1 · הטוב','החוט הראשון:<br>מה עושה לי טוב','היום נגלה יחד מה עושה לנו טוב, ונבנה כיתה שנעים להיות בה.');
+      case 'choose': {
+        const c = (o, n, alt, k, t, rec) => `<button class="ocard" data-act="opener" data-arg="${o}" aria-pressed="${st.opener===o}">${img(n,alt)}<small>${k}</small><b>${t}</b>${rec?`<span class="rec">מומלץ לכיתה ו'</span>`:''}</button>`;
+        return `<div class="pad">${head('איך נפתח היום?','5 דק\'')}<div class="ocards">${c('a','l1-yarn-web.webp','ידיים במעגל מחזיקות רשת חוטי זהב',"פתיח א'",'פקעת החוטים')}${c('b','l1-treasure-box.webp','תיבת עץ פתוחה ובה חפצים קטנים',"פתיח ב'",'קופסת האוצרות',S.basic)}${c('c','l1-good-moment.webp','ידיים מצלמות שקיעה בטלפון',"פתיח ג'",dig()?'מצלמת הרגע הטוב':'ציור הרגע הטוב')}</div></div>`;
+      }
+      case 'opener':
+        if (st.opener==='a') return split(`${head('פקעת החוטים','5 דק\'')}<ol class="lead" style="margin:0;padding-inline-start:28px"><li>${pick('יושבות או עומדות במעגל','יושבים או עומדים במעגל','יושבים או עומדים במעגל')}.</li><li>${pick('הראשונה מחזיקה','הראשון מחזיק','הראשון/ה מחזיק/ה')} את קצה החוט ומשלים: <strong>"אני ${pick('מרגישה מחוברת','מרגיש מחובר','מרגיש/ה מחובר/ת')} היום ל... כי..."</strong></li><li>זורקים את הפקעת הלאה, וממשיכים להחזיק בחוט.</li><li>ממשיכים עד ש${pick('כולן','כולם','כולם')} מחזיקים.</li></ol>${reveal(st.q,'מה קורה לרשת כשמישהו עוזב את החוט?<br>ומה קורה כשכולם מושכים קצת?','שאלה על הרשת','q')}`,'l1-yarn-web.webp','ידיים במעגל מחזיקות רשת חוטי זהב');
+        if (st.opener==='b') return split(`${head('קופסת האוצרות','5 דק\'')}<p class="lead">בקופסה יש חפצים קטנים: זרע, פלסטר, מפתח, מצפן, פקעת חוט ונר.</p><p class="lead"><strong>${pick('כל אחת בוחרת','כל אחד בוחר','כל אחד/ת בוחר/ת')} חפץ אחד</strong> שמזכיר לי משהו שעוזר לי.</p><div class="q">מה החפץ שבחרתי מספר עליי?</div>`,'l1-treasure-box.webp','תיבת עץ פתוחה ובה חפצים קטנים');
+        return split(`${head(dig()?'מצלמת הרגע הטוב':'ציור הרגע הטוב','5 דק\'')}<p class="lead">${dig()?'מעלים לפאדלט תמונה או ציור של':'מציירים על פתק'} <strong>רגע קטן וטוב מהשבוע.</strong></p><p class="lead">בלי פנים. רק הרגע עצמו.</p><p class="lead" style="color:var(--olive)">ביחד נבנה גלריה כיתתית של רגעים טובים.</p>`,'l1-good-moment.webp','ידיים מצלמות שקיעה בטלפון',true);
+      case 'agree': {
+        const t = ['מקשיבים זה לזה','מכבדים כל אחד ואחת','מה שנאמר כאן, נשאר כאן','מדברים על עצמנו'];
+        return `<div class="pad">${head('ההסכמות שלנו','5 דק\'')}<p class="lead">מה יעזור לכולנו להרגיש בנוח ובביטחון כאן?</p><div class="agrid">${t.map((x,i)=>`<button class="agree" data-act="agree" data-arg="${i}" aria-pressed="${st.agree[i]}"><span class="mk"></span><span>${x}</span></button>`).join('')}</div><label style="display:flex;flex-direction:column;gap:6px;font-size:19px;color:var(--olive)">ועוד הסכמה, במילים שלנו:<input class="field" id="l1extra" type="text" data-input="extra" value="${esc(st.extra)}" placeholder="כותבים כאן יחד"></label></div>`;
+      }
+      case 'flags': {
+        const qs = ['איזה צבע יש לשמחה שלך?','עם מי היית ברגע הזה?','מה שומר על השמחה הזאת?'];
+        const max = S.basic ? 1 : 3, n = Math.min(st.flagN, max);
+        return split(`${head('דגלוני השמחה','15 דק\'')}<p class="lead"><strong>3 דברים קטנים שעושים לי טוב,</strong> ועוד דבר אחד.</p><p class="lead">${dig()?'דגלון אחד לכל דבר. אפשר גם פוסט בלי שם ב"קיר השמחה" בפאדלט.':'דגלון נייר אחד לכל דבר, בלי שם, ותולים יחד על לוח הכיתה.'}</p>${S.sector!=='general'?'<p class="lead" style="color:var(--olive)">אפשר לחשוב גם על רגעים של שבת, תפילה, משפחה ואמונה, שנותנים שמחה וכוח.</p>':''}${qs.slice(0,n).map(x=>`<div class="q fade">${x}</div>`).join('')}${n<max?'<button class="btn olive" style="align-self:flex-start" data-act="flagN">שאלה הבאה</button>':''}`,'l1-joy-flags.webp','שרשרת דגלונים צבעוניים ליד חלון מואר');
+      }
+      case 'scale': {
+        const fr = pick('חברה שלחה','חבר שלח','חבר/ה שלח/ה');
+        const t = [fr+' לי הודעה מצחיקה','ירד גשם בדיוק בהפסקה','יוצאים לפעילות כיתתית מחוץ לכיתה','ארוחת ערב משפחתית ביחד'];
+        const face = (c, smile) => `<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="none" stroke="${c}" stroke-width="2"></circle><circle cx="12" cy="14" r="1.8" fill="${c}"></circle><circle cx="22" cy="14" r="1.8" fill="${c}"></circle>${smile?`<path d="M10.5 20.5c3.5 4.5 9.5 4.5 13 0" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"></path>`:`<path d="M11 23h12" stroke="${c}" stroke-width="2" stroke-linecap="round"></path>`}</svg>`;
+        return `<div class="pad">${head('ציר השמחה','8 דק\'')}<p class="lead">כמה זה משמח אותי?</p><div class="ends"><span>${S.basic?face('#5C6228',false):''} קצת</span><span>מאוד ${S.basic?face('#7D1C2A',true):''}</span></div><div class="scale">${t.map((x,i)=>`<div class="srow"><span>${x}</span><input type="range" id="l1s${i}" min="0" max="100" value="${st.scale[i]}" data-range="${i}" aria-label="${esc(x)}"></div>`).join('')}</div>${reveal(st.scaleMsg,'אותו אירוע, חוויה אחרת '+pick('לכל אחת','לכל אחד','לכל אחד/ת')+'. לאיך שאנחנו מסתכלים יש השפעה.','מה גילינו?','scaleMsg','rose')}</div>`;
+      }
+      case 'msg': return message('bg-3.jpg','ui-wash-1.webp','יש מקום גם לשמחה וגם לעצב.','כש'+pick('אני שמה לב','אני שם לב','אני שם/ה לב')+' לרגעים הטובים הקטנים, הם נותנים לי כוח.');
+      case 'knot': return knot(1, st, '<p class="lead">מה לקחתי היום? מילה אחת, רק לעצמי.</p>');
+      case 'letter': return letter(`<div><strong>חוט של תקווה.</strong> השבוע פתחנו יחידה בת חמישה מפגשים על שמחה, שייכות, כוחות אישיים ופנייה לעזרה. בכל מפגש ${pick('כל אחת קושרת','כל אחד קושר','כל אחד/ת קושר/ת')} חרוז לחוט אישי.</div><div><strong>מה עשינו היום:</strong> גילינו מה עושה לנו טוב, ניסחנו יחד את ההסכמות של הכיתה, וראינו שיש מקום גם לשמחה וגם לעצב.</div><div><strong>הקשר שנקשר:</strong> "הטוב", חרוז צהוב חרדל.</div>`,'מה היה הרגע הכי טוב שלך השבוע?');
+      case 'end': return endSlide('במפגש הבא: הרשת שמחזיקה אותי.',1);
+    }
+  },
+  guide(id, st){
+    const g = {
+      gate:'<p><strong>מקור:</strong> המערך של חני, שיעור 1 חלק א\'.</p><p><strong>מטרות:</strong> מקום לרגעים טובים ביומיום; שמחה ועצב על רצף; מרחב בטוח ולכידות.</p><h4>מהלך (45 דק\')</h4><p>פתיח 5\' · ההסכמות שלנו 5\' · דגלוני השמחה 15\' · ציר השמחה 8\' · שיחה וקושרים קשר 5\' · מכתב להורים.</p>',
+      choose:'<p>תפריט לבחירת היועץ/ת. <strong>פתיח א\' מומלץ:</strong> ממנו נולד החוט האישי.</p><p>אם נבחר פתיח אחר, החוטים מחולקים חתוכים בסוף המפגש.</p>',
+      agree:'<p>הכיתה מנסחת 3-4 הסכמות. המנחה מוודא/ת שיש: הקשבה, כבוד, מה שנאמר כאן נשאר כאן, מדברים על עצמנו.</p><p>ההסכמות מוצגות בקצרה בתחילת כל מפגש בהמשך.</p>',
+      flags:'<p>דגלון פיזי או פוסט אנונימי ב"קיר השמחה" בפאדלט (פיקוח מופעל).</p><p><strong>שאלות:</strong> איזה צבע יש לשמחה שלך? עם מי היית? מה שומר עליה?</p>',
+      scale:'<p>ארבעה מצבים יומיומיים. הכיתה ממקמת יחד כל מצב על הציר.</p><p><strong>המסר:</strong> אותו אירוע נחווה אחרת, ולפרשנות שלנו יש השפעה.</p>',
+      msg:'<p>מסר אחד, קצר. אפשר להזמין תלמיד/ה לקרוא בקול.</p><p>שיחה (5\'): מה לוקחים מהמפגש?</p>',
+      knot:'<p>חרוז צהוב חרדל. תלמיד/ה יכול/ה לכתוב לעצמו/ה בדף אישי מילה אחת. המילה לא נאספת ולא מוצגת.</p><p><strong>הנחיה בטיחותית:</strong> התוצר הוא צמיד או מחזיק מפתחות בלבד. לא מכינים שרשרת או שום דבר שנענד על הצוואר, ולא תולים חוטים ארוכים בכיתה. אורך החוט האישי עד כ-60 ס"מ. אין צורך להסביר זאת לתלמידים.</p>',
+      letter:'<p>מכתב הפתיחה שמסביר את "חוט של תקווה". שולחים בסוף המפגש הראשון. ממלאים שם היועץ/ת ודרך ליצירת קשר. הנוסח המלא בלשונית הדפסה.</p>',
+      end:'<p>היועץ/ת אוסף/ת את המעטפות בסוף כל מפגש ומחלק/ת ב"קשר מהשבוע" בתחילת הבא.</p><p>מי שנעדר/ה מקבל/ת את החרוז החסר במפגש הבא. ההשתתפות רשות, בלי ציון ובלי השוואה.</p>'
+    };
+    if (id==='opener') {
+      if (st.opener==='a') return '<p>שואלים: "מה קורה לרשת כשמישהו עוזב את החוט? ומה קורה כשכולם מושכים קצת?"</p><p>מי שמתקשה יכול/ה לומר "אני מרגיש/ה מחובר/ת לכיתה הזו".</p><p><strong>בסוף הפתיח:</strong> גוזרים את הרשת. כל תלמיד/ה נשאר/ת עם חוט אחד באורך של כ-60 ס"מ. המסר: "החוט האישי שלך נולד מהרשת של כולנו".</p><p><strong>גרסה דיגיטלית:</strong> מנטימטר שנבנה לרשת.</p>' + basicNote("פתיח ב', ציר עם פרצופים, פחות דיון.");
+      if (st.opener==='b') return '<p>חפצים סמליים: זרע, פלסטר, מפתח, מצפן, פקעת חוט, נר. כל חפץ "מבשר" מפגש ביחידה.</p><p>מתאים במיוחד לכיתה ו\'. החוטים מחולקים חתוכים בסוף המפגש.</p>' + basicNote("פתיח ב', ציר עם פרצופים, פחות דיון.");
+      return '<p>תמונה או ציור של רגע קטן וטוב מהשבוע, בלי פנים. גלריה כיתתית.</p><p><strong>פאדלט:</strong> פיקוח מופעל ואישור פוסטים לפני הצגה.</p><p><strong>חלופה לא דיגיטלית:</strong> ציור על פתק.</p>' + basicNote("פתיח ב', ציר עם פרצופים, פחות דיון.");
+    }
+    return (g[id]||'') + basicNote("פתיח ב', ציר עם פרצופים, פחות דיון.");
+  }
+};
+
+LESSONS[2] = {
+  ids:['gate','agree','week','person','circus','net','moments','learn','msg','knot','letter','end'],
+  titles:['פתיחה','ההסכמות שלנו','הקשר מהשבוע','דמות עבורי','רשת הביטחון','הרשת שלי','רגעים','מה הרשת מלמדת','מסר מרכזי','קושרים קשר','מכתב להורים','סיום'],
+  init:{m:0,lq:1,tied:false},
+  moments(){
+    const friend = pick('רבתי עם החברה הכי טובה שלי','רבתי עם החבר הכי טוב שלי','רבתי עם החבר/ה הכי טוב/ה שלי');
+    const feel = pick('אני מרגישה שאין לי חברות אמיתיות','אני מרגיש שאין לי חברים אמיתיים','אני מרגיש/ה שאין לי חברים אמיתיים');
+    let m = S.basic ? ['קיבלתי תעודת הצטיינות','אחותי מתחתנת','עברנו דירה','התקבלתי לנבחרת או לחוג','נכשלתי במבחן חשוב',friend]
+      : ['קיבלתי תעודת הצטיינות','אחותי מתחתנת','עברנו דירה',friend,feel,'סבתא חלתה','נכשלתי במבחן חשוב','התקבלתי לנבחרת או לחוג','מישהו פגע בי ברשת'];
+    if (!S.basic && S.sector==='general') m = m.concat(['התאהבתי','הצעתי חברות']);
+    return m;
+  },
+  slide(id, st){
+    switch(id){
+      case 'gate': return gate('bg-1.jpg','bead-2.webp','חרוז בורדו ועליו שתי טבעות זהב שלובות','מפגש 2 · הקשר','הרשת שמחזיקה אותי','היום נגלה מי האנשים שמחזיקים אותנו, ואיך פונים אליהם.');
+      case 'agree': return agreeRecap();
+      case 'week': return week(2,'הטוב','רגע קטן אחד שעשה לי טוב מאז המפגש הקודם.');
+      case 'person': {
+        const im = S.classType==='girls' ? 'l4-poem-mother-daughter.webp' : (S.classType==='boys' ? 'l4-poem-father-son.webp' : 'l2-my-person.webp');
+        return split(`${head('דמות עבורי','5 דק\'')}<p class="lead">חשבו על אדם אחד שהוא שם ${pick('בשבילכן','בשבילכם','בשבילכם')}.</p><p class="lead"><strong>מה יש בו?</strong></p><p class="lead" style="color:var(--olive)">${dig()?'תכונה אחת במנטימטר. בלי שמות.':'תכונה אחת על הלוח. בלי שמות.'}</p>`, im, 'מבוגר וילד יושבים יחד בחום', true);
+      }
+      case 'circus': return split(`<h2 style="font-size:clamp(36px,3.8vw,56px)">רשת הביטחון של הלוליינים</h2><p class="lead">ללוליין יש רשת שתופסת אותו.</p><p class="lead"><strong>גם לנו יש רשת כזאת: אנשים.</strong></p>`,'l2-circus-net.webp','אוהל קרקס ובו לוליין מעל רשת ביטחון');
+      case 'net': return split(`${head('הרשת שלי','20 דק\'')}<p class="lead">במרכז: <strong>אני.</strong> מסביב, במעגלים:</p><div class="chips"><span class="chip">משפחה</span><span class="chip">חברים</span><span class="chip">מבוגרים בבית הספר</span>${S.basic?'':'<span class="chip">אנשי מקצוע</span><span class="chip">עוד אנשים שחשובים לי</span>'}</div><p class="lead">עכשיו נשמע רגעים, ונמתח קו לאנשים שהיו שם בשבילנו.</p><p class="lead" style="color:var(--olive);font-weight:500">הרשת נשארת אצלי.</p>`,'l2-safety-net.webp','רשת מעגלית ובמרכזה נקודת אור, ואנשים סביבה');
+      case 'moments': {
+        const ms = this.moments(), m = Math.min(st.m, ms.length-1);
+        return `<div class="pad">${head('רגעים')}<p class="lead">למי הייתי פונה? מותחים קו ברשת. <span style="color:var(--olive);font-size:18px">(${m+1} מתוך ${ms.length})</span></p><div style="flex:1;display:flex;align-items:center"><div class="bigcard fade">${ms[m]}</div></div><div class="row" style="justify-content:center"><button class="btn" data-act="m" data-arg="-1" ${m===0?'disabled':''}>רגע קודם</button><button class="btn solid" data-act="m" data-arg="1" ${m===ms.length-1?'disabled':''}>רגע הבא</button></div></div>`;
+      }
+      case 'learn': {
+        const qs = ['איפה הרשת צפופה, ואיפה דלילה?','מה עוזר לי לפנות, ומה מעכב אותי?','את מי הייתי רוצה להוסיף לרשת שלי?'];
+        const n = Math.min(st.lq, 3);
+        return `<div class="pad">${head('מה הרשת מלמדת אותי','12 דק\'')}${qs.slice(0,n).map(x=>`<div class="q fade">${x}</div>`).join('')}${n<3?'<button class="btn olive" style="align-self:flex-start" data-act="lq">שאלה הבאה</button>':''}</div>`;
+      }
+      case 'msg': return message('bg-1.jpg','ui-wash-1.webp','לפעמים פנייה לא מצליחה בפעם הראשונה.','שווה לנסות שוב, או לפנות למישהו אחר. ויש מצבים שבהם צריך איש מקצוע.','מסר מרכזי · 3 דק\'');
+      case 'knot': return knot(2, st);
+      case 'letter': return letter(`<div><strong>מה עשינו היום:</strong> דיברנו על האנשים שהם שם בשבילנו, ו${pick('כל אחת בנתה','כל אחד בנה','כל אחד/ת בנה/תה')} "רשת ביטחון" אישית.</div><div><strong>הקשר שנקשר:</strong> "הקשר", חרוז בורדו.</div>`,'מי היה שם בשבילכם כשהייתם בגילנו?');
+      case 'end': return endSlide('במפגש הבא: הכוחות שכבר יש בנו.',2);
+    }
+  },
+  guide(id){
+    const g = {
+      gate:'<p><strong>מקור:</strong> המערך של חני, שיעור 1 חלק ב\' ושיעור 2 (מפת שותפי החוויה), במימוש חדש.</p><p><strong>מטרות:</strong> מודעות לאנשים שאני משתף/ת; הבנה שיש מצבים שמחייבים מבוגר ולפעמים איש מקצוע.</p><h4>מהלך (45 דק\')</h4><p>פתיח "דמות עבורי" 5\' · הרשת שלי 20\' · מה הרשת מלמדת אותי 12\' · מסר מרכזי 3\' · קושרים קשר.</p>',
+      agree:'<p>תזכורת קצרה להסכמות שנבנו במפגש 1.</p>',
+      week:'<p>היועץ/ת מחלק/ת את המעטפות. שיתוף רשות, שניים-שלושה תלמידים.</p>',
+      person:'<p>מסדנת הצוותים של חני. תכונה אחת במנטימטר, בלי שם. ענן מילים.</p><p>התמונה מתחלפת לפי סוג הכיתה.</p>',
+      circus:'<p>מעבר לרשת האישית: גם ללוליין המקצועי יש רשת.</p>',
+      net:'<p>במרכז אני, וסביבי: משפחה, חברים, מבוגרים בבית הספר, אנשי מקצוע, אחרים. התלמידים מותחים קו לאנשים שהיו שם בשבילם.</p><p><strong>הרשת נשארת אצל התלמיד/ה.</strong> חלופה: דף מודפס (בלשונית הדפסה).</p>',
+      moments:'<p>המנחה מקריא/ה "רגעים", והתלמידים מותחים קווים.</p><p><strong>לא לכלול אירוע שמהדהד את אירוע החשיפה.</strong> אפשר לדלג על כל רגע.</p><p>"התאהבתי" ו"הצעתי חברות" מופיעים במגזר הכללי בלבד, כאופציה.</p>',
+      learn:'<p>איפה הרשת צפופה ואיפה דלילה? מה עוזר ומה מעכב? את מי הייתי רוצה להוסיף?</p>',
+      msg:'<p>לפעמים פנייה לא מצליחה בפעם הראשונה; יש מצבים שצריך איש מקצוע.</p>',
+      knot:'<p>חרוז בורדו. מי שנעדר/ה במפגש הקודם מקבל/ת עכשיו גם את החרוז החסר.</p>',
+      letter:'<p>ממלאים שם היועץ/ת ודרך ליצירת קשר. הנוסח המלא בלשונית הדפסה.</p>',
+      end:'<p>אוספים את המעטפות. דף הרשת להדפסה נמצא בלשונית הדפסה.</p>'
+    };
+    return (g[id]||'') + basicNote('6 רגעים פשוטים, רשת עם 3 טבעות.');
+  }
+};
+
+LESSONS[3] = {
+  ids:['gate','agree','week','oz','hand','mirror','keeps','msg','knot','letter','end'],
+  titles:['פתיחה','ההסכמות שלנו','הקשר מהשבוע','המסע לארץ עוץ','כף היד שלי','מראה מחמיאה','מה שומר עליי','מסר מרכזי','קושרים קשר','מכתב להורים','סיום'],
+  init:{picked:{},draft:'',keeps:[],tied:false},
+  slide(id, st){
+    switch(id){
+      case 'gate': return gate('bg-2.jpg','bead-3.webp','חרוז ירוק זית ועליו נבט זהוב','מפגש 3 · הכוח','הכוחות שכבר יש בי','היום נגלה כוחות שכבר נמצאים בנו, ונלמד מהכוחות של חברים.');
+      case 'agree': return agreeRecap();
+      case 'week': return week(3,'הקשר','מישהו מהרשת שלי שהיה שם בשבילי, או שאני הייתי שם בשבילו.');
+      case 'oz': return split(`${head('המסע לארץ עוץ','8 דק\'')}<p class="lead">דחליל שמחפש <strong>שכל</strong>.</p><p class="lead">איש פח שמחפש <strong>לב</strong>.</p><p class="lead">אריה שמחפש <strong>אומץ</strong>.</p><p class="lead">בסוף כל אחד מגלה שהכוח היה בו כל הזמן.</p><div class="q olive">איזה כוח הם גילו שכבר היה בהם?</div>`,'l3-oz-road.webp','דחליל, איש פח ואריה הולכים בדרך צהובה');
+      case 'hand': {
+        let bank = ['אומץ','סבלנות','הומור','חברות','יצירתיות','התמדה','אכפתיות','סקרנות','הקשבה','נדיבות','תקווה','כנות','הכרת תודה','אופטימיות'];
+        if (S.sector!=='general') bank = bank.concat(['אמונה','ביטחון']);
+        return split(`${head('כף היד שלי','12 דק\'')}<p class="lead">על כל אצבע: <strong>כוח אחד שיש בי.</strong> בכף: מי או מה נותן לי כוח.</p><span style="font-size:19px;color:var(--olive)">בנק כוחות, לרעיונות:</span><div class="chips">${bank.map(b=>`<button class="chip btnchip" data-act="pick" data-arg="${b}" aria-pressed="${!!st.picked[b]}">${b}</button>`).join('')}</div>`,'l3-my-hand.webp','כף יד פתוחה ומעל כל אצבע סמל של כוח',true);
+      }
+      case 'mirror': return split(`${head('מראה מחמיאה','12 דק\'')}<p class="lead">${pick('כל אחת כותבת','כל אחד כותב','כל אחד/ת כותב/ת')} כוח שאני רואה <strong>בשני חברים מהכיתה.</strong></p><p class="lead">לפעמים אחרים רואים בנו כוחות שעוד לא שמנו לב אליהם.</p><div class="q olive">איזה כוח אמרו לי שיש בי? הופתעתי?</div>`,'l3-kind-mirror.webp','מראה עגולה ועליה פתקים צבעוניים',true);
+      case 'keeps': return `<div class="pad">${head('מה שומר עליי','8 דק\'')}<p class="lead">דברים שעוזרים לנו בימים קשים. בונים רשימה יחד:</p><form class="row" data-form="keep"><input class="field" id="l3draft" style="flex:1;min-width:220px" type="text" data-input="draft" value="${esc(st.draft)}" placeholder="למשל: מוזיקה, הליכה עם חבר/ה" aria-label="דבר שעוזר בימים קשים"><button class="btn solid big" type="submit">הוספה</button></form><div class="chips">${st.keeps.map(k=>`<span class="chip fade" style="background:var(--olive-t)">${esc(k)}</span>`).join('')}</div></div>`;
+      case 'msg': return message('bg-2.jpg','ui-wash-2.webp','הכוחות כבר בתוכנו.','ואפשר גם ללמוד מהכוחות של החברים שלנו.');
+      case 'knot': return knot(3, st);
+      case 'letter': return letter(`<div><strong>מה עשינו היום:</strong> גילינו כוחות שכבר יש בנו, ושמענו מחברים אילו כוחות הם רואים בנו.</div><div><strong>הקשר שנקשר:</strong> "הכוח", חרוז ירוק זית.</div>`,'איזה כוח אתם רואים בי?');
+      case 'end': return endSlide('במפגש הבא: הפצע והדרך לרפא.',3,true);
+    }
+  },
+  guide(id){
+    const g = {
+      gate:'<p><strong>מקור:</strong> "הקוסם מארץ עוץ" מחומרי חני, והשראה מ"זיהוי כוחות אישיים" ו"כף היד שלי" של שפ"י.</p><p><strong>מטרות:</strong> זיהוי חוזקות; הבנה שחלק מהכוחות כבר בנו; לימוד מהחברים.</p><h4>מהלך (45 דק\')</h4><p>המסע לארץ עוץ 8\' · כף היד שלי 12\' · מראה מחמיאה 12\' · מה שומר עליי 8\' · קושרים קשר.</p>',
+      agree:'<p>תזכורת קצרה להסכמות.</p>', week:'<p>מחלקים את המעטפות. שיתוף רשות.</p>',
+      oz:'<p>תקציר במילים של המנחה, <strong>בלי קטעי סרט.</strong></p>',
+      hand:'<p>בכל אצבע כוח אחד שלי, ובאמצע: מי או מה נותן לי כוח. לחיצה על כוח בבנק מסמנת כוח שעלה בכיתה.</p><p>דף כף היד להדפסה בלשונית הדפסה.</p>',
+      mirror:'<p>כל תלמיד/ה כותב/ת כוח שהוא/היא רואה בשני חברים.</p><p><strong>המנחה מסנן/ת לפני הצגה.</strong></p>',
+      keeps:'<p>הכיתה בונה רשימה של "דברים שעוזרים לנו בימים קשים" (במנטימטר או כאן). המנחה משלים/ה מה שעוד חסר. הרשימה לא נשמרת אחרי סגירת הדף.</p>',
+      msg:'<p>מסר אחד, קצר.</p>', knot:'<p>חרוז ירוק זית.</p>', letter:'<p>ממלאים שם היועץ/ת ודרך ליצירת קשר.</p>',
+      end:'<p>בסוף השיעור: כפתור "להמשך הדרך: הכוחות שבדרך".</p>'
+    };
+    return (g[id]||'') + basicNote('כף יד מאוירת וצביעה.');
+  }
+};
+
+LESSONS[4] = {
+  ids:['gate','agree','week','poem','discuss','aid','flip','helpers','close','knot','letter','end'],
+  titles:['פתיחה','ההסכמות שלנו','הקשר מהשבוע','השיר "פצע"','שאלות לדיון','ערכת עזרה ראשונה','סימן שאלה, סימן קריאה','מי יכול לעזור לי','סגירה','קושרים קשר','מכתב להורים','סיום'],
+  skipBasic:['poem','flip'],
+  init:{pi:0,dq:0,flipped:[false,false,false],tied:false},
+  slide(id, st){
+    switch(id){
+      case 'gate': return split(`<div class="row"><img src="${IMG('bead-4.webp')}" alt="חרוז ורוד עתיק ועליו לב תפור בזהב" style="width:110px;height:110px"><span class="kicker">מפגש 4 · הריפוי</span></div><h1 style="font-size:clamp(44px,5vw,70px)">הפצע והדרך לרפא</h1><p class="lead">גם עץ נפצע. ומהמקום שבו נפצע, לפעמים דווקא צומחים עלים חדשים.</p>`,'l4-tree.webp','יד נוגעת בגזע עץ עם סדק זהוב ועלים חדשים');
+      case 'agree': return agreeRecap();
+      case 'week': return week(4,'הכוח','כוח שלי שעזר לי השבוע, או כוח שראיתי במישהו אחר.');
+      case 'poem': {
+        const mixed = ['l4-poem-mother-daughter.webp','l4-poem-father-son.webp','l4-poem-father-daughter.webp','l4-poem-mother-son.webp'];
+        const im = S.classType==='girls' ? mixed[0] : (S.classType==='boys' ? mixed[1] : mixed[st.pi%4]);
+        return split(`<div class="sh"><span class="kicker">קוראים יחד שיר</span><span class="time">7 דק'</span></div><h2 style="font-size:clamp(64px,7vw,104px)">פצע</h2><div class="wash" style="align-self:flex-start"><img src="${IMG('ui-wash-1.webp')}" alt=""><a href="https://canva.link/e4v7t5h7p03s9h7" target="_blank" rel="noopener" style="color:#fff;font-size:clamp(22px,2vw,30px);font-weight:700;text-decoration:none">לקריאת השיר</a></div><span style="font-size:19px;color:var(--ink2)">מאת: עודד מבורך</span>${S.classType==='mixed'?'<button class="btn olive" style="align-self:flex-start" data-act="pi">תמונה אחרת</button>':''}`, im, 'מבוגר וילד יושבים יחד ומחזיקים ידיים בעדינות', true);
+      }
+      case 'discuss': {
+        const meet = pick('מה את עושה כשאת פוגשת פצע?','מה אתה עושה כשאתה פוגש פצע?','מה את/ה עושה כשאת/ה פוגש/ת פצע?');
+        const full = [
+          ['איזה סוגי פצעים פגשנו?\n(בלי פירוט אישי)', null],
+          [pick('כשאני פוגשת פצע של מישהו אחר, מה אני עושה?\nמתקרבת? מתרחקת? לא יודעת?\nומה עוזר לי להתקרב?','כשאני פוגש פצע של מישהו אחר, מה אני עושה?\nמתקרב? מתרחק? לא יודע?\nומה עוזר לי להתקרב?','כשאני פוגש/ת פצע של מישהו אחר, מה אני עושה?\nמתקרב/ת? מתרחק/ת? לא יודע/ת?\nומה עוזר לי להתקרב?'), ['l4-path.webp','נערה עם תיק מתבוננת באישה שהולכת בשביל']],
+          ['מה יכול להיות החוט שמחבר אותי למי שכואב לו?\n"בקערה הזו לא הסתירו את הסדקים. תיקנו אותם בחוט של זהב, ביחד."', ['l4-bowl.webp','ידיים מתקנות קערה סדוקה בחוט זהב']],
+          ['מי האדם שאומר לי "זה יעבור"?\n(תפקידים, לא שמות)', ['l4-mother.webp','אם מנחמת ילד בחום']]
+        ];
+        const basic = [[meet,['l4-path.webp','נערה עם תיק מתבוננת באישה שהולכת בשביל']],['מי ינחם אותי?\n(תפקידים, לא שמות)',['l4-mother.webp','אם מנחמת ילד בחום']]];
+        const qs = S.basic ? basic : full, i = Math.min(st.dq, qs.length-1), q = qs[i];
+        const body = `${head('שאלות לדיון')}<span style="font-size:18px;color:var(--olive)">${i+1} מתוך ${qs.length}</span><div class="bubble"><img src="${IMG('ui-bubble.webp')}" alt=""><p class="fade">${esc(q[0])}</p></div><div class="row"><button class="btn" data-act="dq" data-arg="-1" ${i===0?'disabled':''}>שאלה קודמת</button><button class="btn olive" data-act="dq" data-arg="1" ${i===qs.length-1?'disabled':''}>שאלה הבאה</button></div>`;
+        return q[1] ? split(body, q[1][0], q[1][1], q[1][0]==='l4-mother.webp') : `<div class="pad">${body}</div>`;
+      }
+      case 'aid': return `<div class="pad"><div class="sh"><img src="${IMG('l4-first-aid.webp')}" alt="ערכת עזרה ראשונה פתוחה" style="height:120px;width:auto"><h2>ערכת עזרה ראשונה</h2><span class="time">10 דק'</span></div><div class="cols2" style="flex:1"><div class="col"><b>פצע בגוף</b><span>מה מנקה?</span><span>מה מגן?</span><span>מתי צריך רופא?</span></div><div class="col rose"><b>פצע בלב</b><span>מה עוזר לבד?</span><span>מתי חבר?</span><span>מתי מבוגר?</span><span>מתי איש מקצוע?</span></div></div></div>`;
+      case 'flip': {
+        const cards = [['אף אחד לא מבין אותי!','אף אחד לא מבין אותי?','מי כן הבין אותי פעם? למי אפשר לספר?'],['זה לעולם לא ישתנה!','זה לעולם לא ישתנה?','מה כבר השתנה אצלי בעבר?'],['כולם נגדי!','כולם נגדי?','מי בכל זאת לצדי?']];
+        return `<div class="pad"><div class="sh"><img src="${IMG('l4-question-mark.webp')}" alt="סימן שאלה וסימן קריאה בצבעי מים" style="height:96px;width:auto"><h2>סימן שאלה, סימן קריאה</h2><span class="time">12 דק'</span></div><p class="lead">כשמחליפים את סימן הקריאה בסימן שאלה, נפתחות עוד אפשרויות. לוחצים על כרטיס כדי להפוך אותו.</p><div class="fgrid">${cards.map((c,i)=>`<button class="fc" data-act="flip" data-arg="${i}" aria-pressed="${st.flipped[i]}">${st.flipped[i]?`<div class="open fade"><span>${c[1]}</span><span>${c[2]}</span></div>`:`<img class="back" src="${IMG('ui-card-back.jpg')}" alt=""><div class="in">${c[0]}</div>`}</button>`).join('')}</div></div>`;
+      }
+      case 'helpers': {
+        let h = ['יועץ/ת','מחנך/ת','מורה שאני אוהב/ת','אח/ות בית הספר','הורים','סבא וסבתא','חברים','מאמן/ת בחוג','מדריך/ה בתנועה'];
+        if (S.sector!=='general') h = h.concat(['רב/רבנית']);
+        return split(`${head('מי יכול לעזור לי כשיש לי פצע?','10 דק\'')}<p class="lead">מפת הדמויות של בית הספר, ושל מה שמחוצה לו:</p><div class="chips">${h.map(x=>`<span class="chip">${x}</span>`).join('')}</div>`,'l4-helpers-map.webp','מפה מאוירת של בית ספר ושכונה עם אנשים');
+      }
+      case 'close': return split(`<span class="kicker">סגירה · 6 דק'</span><h2 style="font-size:clamp(40px,4.4vw,62px)">אף פעם לא להישאר לבד.</h2><p class="lead">לא עם הפצע שלי, ולא עם הפצע של החבר שלי.</p><p class="lead" style="color:var(--olive)">בקערה, הסדקים לא הוסתרו. הם חוברו.</p>`,'l4-bird.webp','ציפור קטנה בתוך שתי ידיים פתוחות',true);
+      case 'knot': return knot(4, st);
+      case 'letter': return letter(`<div><strong>מה עשינו היום:</strong> דיברנו על כך שגם כאב הוא חלק מהחיים, על מה שעוזר לרפא, ועל האנשים שאפשר לפנות אליהם.</div><div><strong>הקשר שנקשר:</strong> "הריפוי", חרוז ורוד עתיק.</div>`,'מה עזר לכם פעם כשהיה לכם קשה?');
+      case 'end': return endSlide('במפגש הבא, האחרון: חבר בשביל חבר.',4);
+    }
+  },
+  guide(id){
+    const top = '<div class="box"><strong style="color:var(--bordeaux)">הנחיה למנחה:</strong> לא פותחים את נושא האובדנות. אם תלמיד/ה מעלה אותו, עונים בקצרה וברוגע לפי נספח 4 (מקשיבים, לא שופטים, מראים שיש אלטרנטיבות, מפנים לעזרה), מחזירים בעדינות לפנייה לעזרה ולכוחות, ואחרי השיעור פועלים לפי נוהל 6.1.</div>';
+    const g = {
+      gate:'<p><strong>מקור:</strong> המערך של חני, שיעור 3; השיר "פצע"; נספחים 4 ו-6; השראה מ"סימן שאלה, סימן קריאה".</p><p><strong>מטרות:</strong> לגיטימציה לכאב; היכרות עם חשיבה "שחור-לבן" בזמן לחץ ותרגול ראיית אפשרויות; למי פונים; לא להישאר לבד.</p><h4>מהלך (45 דק\')</h4><p>השיר 7\' · שאלות לדיון · ערכת עזרה ראשונה 10\' · סימן שאלה, סימן קריאה 12\' · מי יכול לעזור לי 10\' · סגירה 6\'.</p>',
+      agree:'<p>תזכורת קצרה להסכמות.</p>', week:'<p>מחלקים את המעטפות. שיתוף רשות.</p>',
+      poem:'<p>מילות השיר לא מוטמעות בשקף. הקריאה מתוך הקישור או מהעותק של המנחה.</p><p>בשיר יש דימויים חזקים. מקריאים בקול רגוע, לא נעצרים עליהם, ומפנים את הדיון לשאלות של תגובה, קרבה ועזרה. תלמיד/ה בלי תשובה לשאלה "זה יעבור": לא עוצרים בכיתה, בודקים בשקט אחרי השיעור.</p><p>התמונה לפי סוג הכיתה. בכיתה מעורבת, ארבע הגרסאות מתחלפות בלחיצה.</p>',
+      discuss:'<p>שאלה אחת בכל פעם, ענן מילים אנונימי. סוגי פצעים: בלי פירוט אישי. דמויות: תפקידים, לא שמות.</p>',
+      aid:'<p>פצע בגוף לעומת פצע בלב: מה מנקה, מה מגן, מתי צריך רופא. ובמקביל: מה עוזר לבד, מתי חבר, מתי מבוגר, מתי איש מקצוע.</p>',
+      flip:'<p>בזוגות מחליפים את סימן הקריאה בסימן שאלה ומחפשים שתי אפשרויות.</p><p>נספח 6: מצב לחץ עלול לגרום לחשיבה נוקשה; מצבים בחיים זמניים והפיכים. כרטיסיות להדפסה בלשונית הדפסה.</p>',
+      helpers:'<p>מפת דמויות ותפקידים בבית הספר ומחוצה לו.</p>',
+      close:'<p>חוזרים לקערה: הסדקים לא הוסתרו, הם חוברו.</p>',
+      knot:'<p>חרוז ורוד עתיק.</p>', letter:'<p>ממלאים שם היועץ/ת ודרך ליצירת קשר.</p>', end:'<p>אוספים את המעטפות.</p>'
+    };
+    return top + (g[id]||'') + basicNote('לא קוראים את השיר במלואו. מתחילים מהשאלה שפותחת אותו ומהשאלה שחותמת אותו, ועוברים לערכת העזרה. בלי פעילות סימן שאלה. השקפים האלה מדולגים אוטומטית.');
+  }
+};
+
+LESSONS[5] = {
+  ids:['gate','agree','week','secret','noam','bridge','braid','giving','song','take','cards','letter','end'],
+  titles:['פתיחה','ההסכמות שלנו','הקשר מהשבוע','סוד או דאגה','הסיפור של נועם','גשר המילים','החוט המשולש','חוט מחבר','לקום מחר בבוקר','מה אני לוקח/ת','מסרים לדרך','מכתב להורים','סיום'],
+  init:{sc:0,vote:{},ni:0,noamMsg:false,planks:{},tied:false,votes:[0,0,0,0,0],rc:{}},
+  slide(id, st){
+    switch(id){
+      case 'gate': return gate('bg-3.jpg','bead-5.webp','חרוז זהב ועליו יד פתוחה','מפגש 5 · העזרה','חבר בשביל חבר','היום נלמד מתי משתפים מבוגר, איך מבקשים עזרה, ונסגור את החוט.');
+      case 'agree': return agreeRecap();
+      case 'week': return week(5,'הריפוי','משהו שעזר לי, או שעזרתי בו למישהו אחר.');
+      case 'secret': {
+        const SHARE='דאגה שמשתפים מבוגר. זו לא "הלשנה", זו אכפתיות.', KEEP='סוד ששומרים. סוד טוב, שאף אחד לא נפגע ממנו.';
+        const sc = S.basic ? [['חבר שלי עצוב מאוד, ואמר לי לא לספר לאף אחד',SHARE],['חברה מתכננת מסיבת הפתעה לחברה אחרת',KEEP]]
+          : [['חבר מתכנן מסיבת הפתעה לחבר אחר',KEEP],['חבר סיפר שמציקים לו ברשת, וביקש שלא אגלה',SHARE],['חברה אומרת שאין לה כוח לכלום, כבר שבועיים',SHARE],['חברה קנתה מתנה לאמא שלה ליום ההולדת',KEEP],['חבר נכשל במבחן ומתבייש לספר בבית','שווה לדבר: אפשר לעודד אותו לשתף, ולהיות לצדו.']];
+        const i = Math.min(st.sc, sc.length-1), v = st.vote[i];
+        return split(`${head('סוד או דאגה?','6 דק\'')}<span style="font-size:18px;color:var(--olive)">${i+1} מתוך ${sc.length}</span><div class="bigcard fade" style="font-size:clamp(24px,2.4vw,32px)">${sc[i][0]}</div><div class="row" style="justify-content:center"><button class="btn ${v==='keep'?'on':''}" data-act="vote" data-arg="keep">סוד ששומרים</button><button class="btn ${v==='share'?'on':''}" data-act="vote" data-arg="share">דאגה שמשתפים מבוגר</button></div>${v?`<div class="q olive fade" style="text-align:center">${sc[i][1]}</div>`:''}<div class="row" style="justify-content:center"><button class="btn" data-act="sc" data-arg="-1" ${i===0?'disabled':''}>מצב קודם</button><button class="btn olive" data-act="sc" data-arg="1" ${i===sc.length-1?'disabled':''}>מצב הבא</button></div>`,'l5-secret-or-worry.webp','יד מחזיקה פנס, ולצדה מתנה עטופה');
+      }
+      case 'noam': {
+        const girls = S.classType==='girls';
+        const imgs = ['l5-noam.webp','l5-noam-alt.webp','l5-noam-alt2.webp'];
+        const im = girls ? 'l5-girls.webp' : imgs[st.ni%3];
+        return split(`${head('הסיפור של נועם','12 דק\'')}<p class="lead">${girls?'נועם שמה לב שהחברה שלה נהייתה שקטה, מוותרת על אימונים, וכתבה לה: "עזבי, זה לא משנה".':'נועם שם לב שהחבר שלו נהיה שקט, מוותר על אימונים, וכתב לו: "עזוב, זה לא משנה".'}</p><p class="lead" style="color:var(--olive)">${girls?'מה נועם ראתה? מה היא מרגישה? מה יכול לעזור?':'מה נועם ראה? מה הוא מרגיש? מה יכול לעזור?'}</p>${reveal(st.noamMsg,girls?'לשתף מבוגר כשחברה במצוקה זו לא "הלשנה". זו אכפתיות, וחברות אמיתית.':'לשתף מבוגר כשחבר במצוקה זו לא "הלשנה". זו אכפתיות, וחברות אמיתית.','מה למדנו?','noamMsg','rose')}${girls?'':'<button class="btn olive" style="align-self:flex-start" data-act="ni">תמונה אחרת</button>'}`, im, girls?'שתי נערות יושבות על ספסל בחצר בית הספר, אחת מניחה יד על כתף חברתה':'שני נערים יושבים על ספסל בחצר בית הספר');
+      }
+      case 'bridge': {
+        let pl = [['open','פתיחה','אפשר לדבר איתך רגע?'],['saw','מה ראיתי','שמתי לב שהחבר שלי נהיה שקט ומוותר על דברים שאהב.'],['worry','מה מדאיג אותי',pick('אני דואגת לה, ולא יודעת מה לעשות.','אני דואג לו, ולא יודע מה לעשות.','אני דואג/ת, ולא יודע/ת מה לעשות.')],['ask',pick('מה אני מבקשת','מה אני מבקש','מה אני מבקש/ת'),'אני רוצה שתעזרו לו. ואני רוצה להמשיך להיות חבר טוב.']];
+        if (S.basic) pl = pl.filter(p=>p[0]==='saw'||p[0]==='ask');
+        return split(`${head('גשר המילים','8 דק\'')}<p class="lead">בקבוצות בונים פנייה למבוגר מ"קרשים". לוחצים על קרש כדי לראות דוגמה.</p><div class="plgrid">${pl.map(p=>`<button class="plank" data-act="plank" data-arg="${p[0]}" aria-pressed="${!!st.planks[p[0]]}"><strong>${p[1]}</strong>${st.planks[p[0]]?`<span class="fade">${p[2]}</span>`:''}</button>`).join('')}</div>`,'l5-word-bridge.webp','נער חוצה גשר עץ מעל נחל לעבר מבוגרת');
+      }
+      case 'braid': return split(`${head('החוט המשולש','15 דק\'')}<p class="lead" style="font-family:var(--display);font-weight:700;color:var(--bordeaux)">"וְהַחוּט הַמְשֻׁלָּשׁ לֹא בִמְהֵרָה יִנָּתֵק" (קהלת ד, יב)</p><div style="display:flex;flex-direction:column;gap:6px" class="lead"><span><strong>החוט שלי</strong>, עם חמשת החרוזים: אני</span><span><strong>חוט הרשת</strong>, בצבע לבחירה: האנשים שמחזיקים אותי</span><span><strong>חוט הזהב</strong>: העזרה</span></div><div class="q olive">מה שלושת הדברים הגדולים שמחזיקים אותך?</div><div class="row"><span style="position:relative;width:84px;height:84px;display:inline-block">${st.tied?`<img class="pop" src="${IMG('ui-sparkle.webp')}" alt="" style="position:absolute;inset:-20px;width:124px;height:124px">`:''}<img src="${IMG('bead-5.webp')}" alt="חרוז זהב" style="position:relative;width:84px;height:84px"></span>${st.tied?'<span class="lead fade" style="color:var(--olive);font-weight:500">חמישה חרוזים. החוט שלם.</span>':'<button class="btn solid big" data-act="tie">קושרים את חרוז הזהב: העזרה</button>'}</div>`,'l5-triple-braid.webp','ידיים קולעות צמה משלושה חוטים עם חרוזים',true);
+      case 'giving': return split(`<span class="kicker">משימת הבית, רשות</span><h2 style="font-size:clamp(40px,4.4vw,62px)">חוט מחבר</h2><p class="lead">במעטפה יש חוט זהב קצר.</p><p class="lead">בימים הקרובים אפשר לתת אותו למישהו קרוב, כמו לומר: <strong>"אני כאן בשבילך".</strong></p>`,'l5-giving-thread.webp','ידיים קושרות חוט זהב על פרק כף יד של אחר',true);
+      case 'song': return split(`<span class="kicker">סגירת היחידה</span><h2 style="font-size:clamp(42px,4.6vw,64px)">לקום מחר בבוקר</h2><span style="font-size:19px;color:var(--ink2)">מילים ולחן: נעמי שמר</span><p class="lead">כל יום הוא הזדמנות להתחלה חדשה. גם אחרי יום קשה, מחר אפשר להתחיל שוב, ולא לבד.</p><div class="row"><a class="btn solid big" href="https://www.youtube.com/watch?v=6MoC6RETWhQ" target="_blank" rel="noopener">להאזנה לשיר</a>${S.guide?'<a class="btn big" href="https://www.youtube.com/watch?v=-P0Gnvk5Kmk" target="_blank" rel="noopener">קליפ: תקווה אחרי 7.10 (למנחה)</a>':''}</div>`,'l5-new-day.webp','זריחה מעל גבעות מדבר');
+      case 'take': {
+        const q = S.basic ? 'מה דבר אחד טוב שאני רוצה לעשות מחר בבוקר?' : 'מה אני '+pick('לוקחת','לוקח','לוקח/ת')+' איתי מ"חוט של תקווה" אל המחר?';
+        return `<div class="pad">${head(q)}${S.basic?'':`<p class="lead">${pick('כל אחת בוחרת','כל אחד בוחר','כל אחד/ת בוחר/ת')} חרוז אחד. ההצבעה אנונימית.</p><div class="vgrid">${LWORDS.map((w,i)=>`<button class="beadv" data-act="bv" data-arg="${i}" aria-label="${w}: ${st.votes[i]} קולות. לחיצה מוסיפה קול"><img src="${IMG(BEADS[i])}" alt=""><b>${w}</b><span>${st.votes[i]}</span></button>`).join('')}</div>`}<div style="flex:1"></div><div class="wash" style="align-self:center"><img src="${IMG('ui-wash-3.webp')}" alt=""><span style="font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,40px);color:var(--ink)">החוט שלי איתי, גם מחר בבוקר.</span></div></div>`;
+      }
+      case 'cards': {
+        const msgs = ['לכל בעיה יש יותר מפתרון אחד!','מצבים בחיים הם זמניים והפיכים, גם מצב המצוקה הקשה ביותר.','אפשר להתאמן על חשיבה אופטימית, ולפתוח פתח לתקווה.','הקשבה לחבר/ה והתעניינות בו מסייעת לו להתחבר לכוחות שבו ונותנת תחושות של תקווה.','שיתוף גורם מקצועי במצוקת חבר איננה "הלשנה", אלא הצלת חיים והוכחה לחברות אמיתית.','פנייה לעזרה היא עדות לכוח נפשי של הפונה, ולא לחולשה!','חשוב לא להישאר לבד עם הכאב ולשתף חברים ומבוגרים.','יש לזכור שתמיד יש מי שמוכן להקשיב ולסייע.','התנדבות ונתינה לאחר מחזקים תחושת מסוגלות אישית ובונים חוסן נפשי.'];
+        return `<div class="pad">${head('מסרים לדרך')}<p class="lead">לוחצים על כרטיס כדי לפתוח.</p><div class="rgrid">${msgs.map((m,i)=>`<button class="rc" data-act="rc" data-arg="${i}" aria-pressed="${!!st.rc[i]}" aria-label="${st.rc[i]?esc(m):'כרטיס '+(i+1)+', סגור'}">${st.rc[i]?`<div class="fade">${m}</div>`:`<img src="${IMG('ui-card-back.jpg')}" alt="">`}</button>`).join('')}</div></div>`;
+      }
+      case 'letter': return letter(`<div><strong>מה עשינו היום:</strong> למדנו את ההבדל בין סוד ששומרים לדאגה שמשתפים מבוגר, תרגלנו איך מבקשים עזרה, וסגרנו את החוט.</div><div><strong>הקשר שנקשר:</strong> "העזרה", חרוז זהב. החוט הפך לצמיד או למחזיק מפתחות.</div>`,'מה הדבר האחד שהכי ריגש אותך ב"חוט של תקווה"?');
+      case 'end': return endSlide('',5,true,'l5-triple-braid.webp','ידיים קולעות צמה משלושה חוטים');
+    }
+  },
+  guide(id){
+    const g = {
+      gate:'<p><strong>מקור:</strong> נספחים 6 ו-7 וסעיף 9.2, בפעילויות מקוריות.</p><p><strong>מטרות:</strong> להבחין בין שיתוף מבוגר ל"הלשנה"; לתרגל ניסוח פנייה; להכיר גורמי סיוע; לסגור את החוט.</p><h4>מהלך (45 דק\')</h4><p>סוד או דאגה 6\' · הסיפור של נועם 12\' · גשר המילים 8\' · החוט המשולש 15\' · סגירה 3-5\'.</p>',
+      agree:'<p>תזכורת קצרה להסכמות.</p>', week:'<p>מחלקים את המעטפות. שיתוף רשות.</p>',
+      secret:'<p>חמישה מצבים קצרים. הצבעה: "סוד ששומרים" או "דאגה שמשתפים מבוגר". אחרי ההצבעה מוצגת התשובה.</p><p>המצבים הרביעי והחמישי הם הצעה, אפשר להחליף.</p>',
+      noam:'<p>"מה ראיתי, מה אני מרגיש/ה, מה יכול לעזור?"</p><p>בכיתת בנות הסיפור מוצג בלשון נקבה (נועם וחברתה), והתמונה מתחלפת בהתאם.</p><p>המסר: לשתף מבוגר כשחבר במצוקה זו לא "הלשנה", זו אכפתיות וחברות אמיתית.</p>',
+      bridge:'<p>בקבוצות בונים פנייה למבוגר מ"קרשים": פתיחה, מה ראיתי, מה מדאיג אותי, מה אני מבקש/ת. קרשי הגשר להדפסה בלשונית הדפסה.</p>',
+      braid:'<p>קולעים צמה משלושה חוטים: החוט שלי, חוט הרשת (בצבע לבחירה) וחוט הזהב (העזרה, כמו חוט הזהב שתיקן את הקערה). קושרים את חרוז הזהב.</p><p><strong>התוצר:</strong> צמיד או מחזיק מפתחות עם תגית "החוט שלי". בגב התגית גורמי הסיוע מנספח 7 (להדפסה).</p>',
+      giving:'<p>משימת הבית, רשות. לוודא שאף אחד/ת לא נשאר/ת בלי חוט.</p>',
+      song:'<p><strong>מקור:</strong> סדנת הצוותים של חני; רעיון "ההתחלה החדשה" מפעילות ראש חודש של חמ"ד (<a href="https://meyda.education.gov.il/files/hemed/yesodi/m-halev/sav5.pdf" target="_blank" rel="noopener">לפעילות</a>). מילות השיר לא מוטמעות בשקף.</p><p><strong>הקליפ: לפני שבוחרים קישור.</strong> הקליפ מרגש ויש בו עוצמה ותקווה, אבל גם תמונות רגישות מ-7.10. חובה לצפות בו לפני השיעור. מומלץ להשתמש בביצוע השיר כאשר: היחידה מועברת כהתערבות בעקבות חשיפה לאירוע (6.2); בכיתה יש תלמידים שחוו אובדן, פגיעה או פינוי בעקבות המלחמה, או תלמידים שמגיבים בעוצמה לתכנים כאלה; אין זמן לשיחה אחרי הצפייה; מדובר בכיתה ו\'.</p><p>אם בוחרים בקליפ: מכינים את הכיתה במשפט אחד, מאפשרים לא לצפות, ומשאירים כמה דקות לשיחה קצרה. אחרי השיעור שמים לב לתלמידים שהגיבו בעוצמה ופועלים לפי הצורך.</p>',
+      take:'<p>כל אחד/ת בוחר/ת חרוז אחד. התוצאות מוצגות כחוט כיתתי, אנונימית.</p><p>פעילות רשות. מדגישים התחלה חדשה ושלא עושים אותה לבד, ולא נכנסים לשיחה על כאב.</p>',
+      cards:'<p>כרטיסיות מסרי החוסן (נספח 6). הרשימה מסוננת: מסרים שמזכירים התאבדות או סכנה אובדנית לא נכנסו.</p>',
+      letter:'<p>ממלאים שם היועץ/ת ודרך ליצירת קשר.</p>', end:'<p>בסוף השיעור: כפתור "להמשך הדרך: הכוחות שבדרך".</p>'
+    };
+    return (g[id]||'') + basicNote('תרחיש פשוט ("חבר שלי עצוב מאוד ואמר לי לא לספר"), גשר מילים עם 2 קרשים. בסגירה: פעילות רשות, הבית הראשון בלבד, בביצוע הרגיל; "מה דבר אחד טוב שאני רוצה לעשות מחר בבוקר?"');
+  }
+};
+for (const n in LESSONS) Object.assign(L[n], JSON.parse(JSON.stringify(LESSONS[n].init)));
+
+/* ---------- views ---------- */
+function viewHome(){
+  const beads = S.done.filter(Boolean).length;
+  return `<section class="hero fade"><div class="t"><img class="logo" src="${IMG('logo-nophone.webp')}" alt="הלוגו של חני בלוי"><span class="eyebrow">יחידת לימוד · כיתות ז'-ח' · חמישה מפגשים</span><h1>חוט של תקווה</h1><p>חמישה מפגשים על שמחה, שייכות, כוחות אישיים ופנייה לעזרה, עבור עצמנו ועבור חברים.</p><div class="row"><a class="btn solid big" href="#counselor">להתחלה: כניסת יועץ/ת</a><a class="btn big" href="#lesson1">למפגש 1</a></div></div>${art('cover.webp','שתי ידיים קושרות חוט זהב עדין בין עלים')}</section>
+  <h2 style="font-size:40px;margin-top:36px">חמשת המפגשים</h2>
+  <div class="cards">${LTITLES.map((t,i)=>`<a class="lcard" href="#lesson${i+1}"><img src="${IMG(BEADS[i])}" alt=""><small>מפגש ${i+1} · ${LWORDS[i]}</small><strong>${t}</strong></a>`).join('')}</div>
+  <div class="thread"><img src="${IMG(DIVIDERS[Math.max(0,beads-1)])}" alt="החוט הכיתתי"><span>${beads===0?'החוט הכיתתי':(beads===1?'חרוז אחד על החוט הכיתתי':beads+' חרוזים על החוט הכיתתי')}</span></div>
+  <div class="homeacts"><a class="btn olive" href="#strengths">הכוחות שבדרך: חוסן בשגרה ובחירום</a><a class="btn" href="#print">גרסת הדפסה</a><button class="btn quiet" type="button" data-modal="sources">מקורות</button></div>`;
+}
+function pills(list, key){
+  return `<div class="pills">${list.map(([id,label])=>`<button class="pill" type="button" data-set="${key}" data-val="${id}" aria-pressed="${S[key]===id}">${label}</button>`).join('')}</div>`;
+}
+function viewCounselor(){
+  const labels = ['ההחלטה להפעיל את היחידה התקבלה בצל"ח, לאחר היוועצות עם פסיכולוג/ית השפ"ח ו/או מדריך/ת היחידה בשפ"י.','מופו מעגלי החשיפה והפגיעות. תלמידים במעגל הקרוב קיבלו קודם מענה פרטני, ונבחן עם הצוות אם ואיך ישתתפו.','הנחיה משותפת: יועץ/ת ומחנך/ת הכיתה.','נקבע "מקום בטוח לצאת אליו" ואיש צוות זמין בזמן השיעור.','ההורים יודעו מראש (נוסח מכתב בלשונית הדפסה).','נבחר פתיח לשיעור הראשון.','הוכנו חומרי החוט.'];
+  return `<section class="cs fade"><div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="sh"><h2>שער כניסה ליועץ/ת</h2><span class="badge">גלוי ליועץ/ת בלבד</span></div><p style="font-size:19px">היחידה יכולה לשמש כהתערבות כיתתית מכוונת בעקבות חשיפה לאירוע (6.2) או כיחידת מניעה כללית. <strong style="color:var(--bordeaux)">בשני המקרים, בכיתה לא מדברים על האירוע ולא על אובדנות.</strong> מדברים על התמודדות עם קושי, על כוחות ועל פנייה לעזרה.</p><div class="group"><span>אופן השימוש</span>${pills([['event','התערבות בעקבות אירוע (6.2)'],['prevention','מניעה כללית']],'mode')}</div><h3 style="font-size:24px;color:var(--olive);font-family:var(--body)">צ'ק ליסט לפני שמתחילים</h3><div>${labels.map((l,i)=>`<label class="ck"><input type="checkbox" id="ck${i}" data-check="${i}" ${S.checks[i]?'checked':''}><span>${l}</span></label>`).join('')}</div><span style="color:var(--olive)">${S.checks.filter(Boolean).length} מתוך 7 הושלמו</span></div>
+  <div style="display:flex;flex-direction:column;gap:18px;min-width:0"><div class="contact"><img src="${IMG('logo-full.webp')}" alt="הלוגו של חני בלוי, יועצת ומדריכה"><span>ליווי והדרכה ליועצים:<br><strong style="color:var(--bordeaux)">חני בלוי</strong>, יועצת ומדריכה<br><span dir="ltr" style="user-select:all">054-5918770</span></span></div><div class="group"><span>מגזר</span>${pills([['general','כללי'],['dati','ממלכתי-דתי'],['haredi','חרדי']],'sector')}</div><div class="group"><span>סוג כיתה</span>${pills([['girls','בנות'],['boys','בנים'],['mixed','מעורבת']],'classType')}<span style="font-size:15px;color:var(--olive)">קובע את לשון הפנייה בשקפים ואת התמונות שיש להן כמה גרסאות.</span></div><div class="note"><strong style="color:var(--olive)">טיפים לשימוש:</strong> ההגדרות נשמרות בדפדפן שלך. בכיתה, סגרו את "מסך מנחה" לפני ההקרנה. מעבר בין שקפים: כפתורי הקודם והבא, או מקשי החצים במקלדת.</div><a class="btn solid big" href="#lesson1" style="align-self:flex-start">למפגש 1</a></div></section>`;
+}
+function lessonIds(n){ const D = LESSONS[n]; return S.basic && D.skipBasic ? D.ids.filter(i=>!D.skipBasic.includes(i)) : D.ids; }
+function viewLesson(n){
+  const D = LESSONS[n], st = L[n], ids = lessonIds(n), k = Math.min(st.k, ids.length-1), id = ids[k];
+  const modeNote = S.mode==='event' ? '<p class="box">התערבות 6.2: בכיתה לא מדברים על האירוע. מדברים על התמודדות עם קושי, על כוחות ועל פנייה לעזרה.</p>' : '';
+  return `<div class="lesson${S.guide?' withguide':''}"><div class="stage"><section class="slide" aria-label="${esc(D.titles[D.ids.indexOf(id)])}" id="slide">${D.slide(id, st)}</section><div class="strip"><img src="${IMG(DIVIDERS[n-1])}" alt=""></div><div class="nav"><button class="btn" type="button" data-nav="-1" ${k===0?'disabled':''}>הקודם</button><div class="dots">${ids.map((x,i)=>`<button class="dot" type="button" data-go="${i}" aria-label="${i+1}: ${esc(D.titles[D.ids.indexOf(x)])}" ${i===k?'aria-current="step"':''}><i></i></button>`).join('')}<span class="count">${k+1} / ${ids.length}</span></div><button class="btn solid" type="button" data-nav="1" ${k===ids.length-1?'disabled':''}>הבא</button></div></div>${S.guide?`<aside class="guide" aria-label="הנחיות למנחה"><div class="lbl">למנחה · לא להקרנה</div>${modeNote}${D.guide(id, st)}</aside>`:''}</div>`;
+}
+function viewStrengths(){
+  const sec = (key, c, t, bead, title, tag, sub, cards) => `<section class="sec" id="${key}" style="--c:${c};--t:${t}"><div class="cl"><img src="${IMG(bead)}" alt=""><h2>${title}</h2><span class="tag">${tag}</span></div>${sub?`<p class="sub">${sub}</p>`:''}<div class="lgrid">${cards.map(x=>`<div class="lc"><span class="st">ממלכתי</span><h3>${x[0]}</h3><span>${x[1]}</span><div class="take"><strong>מה לוקחים איתנו:</strong> ${x[2]}</div><a class="btn" href="https://meyda.education.gov.il/files/shefi/kishurey_chayim/Hakochot_Shebaderech/${x[3]}" target="_blank" rel="noopener">לפתיחת המצגת</a></div>`).join('')}</div></section>`;
+  return `<div class="fade"><div class="kh"><img src="${IMG('kochot-logo.png')}" alt="הלוגו של תוכנית הכוחות שבדרך"><div><h1>הכוחות שבדרך</h1><span>חוסן בשגרה ובחירום</span></div></div>
+  <p style="font-size:21px;max-width:1040px;margin-top:14px">שיעורים מתוכנית "הכוחות שבדרך" של שפ"י (יחידות לימוד בכישורי חיים: מיומנויות לחיזוק כוחות וחוסן להתנהלות מיטבית בשגרה ובחירום). בחרו את השיעור שמתאים לכיתה שלכם. התכנים פתוחים לעריכה ולהתאמה לכל שכבה.</p>
+  <div class="jumps"><a href="#cl-a" style="--c:#7A3E80" data-jump="cl-a">א · לחשוב טוב</a><a href="#cl-b" style="--c:#C2405F" data-jump="cl-b">ב · מקורות האושר בחיי</a><a href="#cl-c" style="--c:#0E7C8C" data-jump="cl-c">ג · ערכים במשפחה</a><a href="#cl-d" style="--c:#5B3C91" data-jump="cl-d">ד · ליצור משמעות</a></div>
+  ${S.guide?'<div class="note"><strong style="color:var(--olive)">למנחה:</strong> השיעורים נשארים במצגות המקור של שפ"י; הדף מפנה ומתקצר, לא משנה תוכן. בתחילת כל שיעור חוזרים על "הנחיות לשיח מיטבי". ב"מקורות האושר", בשלב המיון, שימו לב למקורות אושר שיש בהם מרכיב של סיכון. לפני השימוש בודקים אם יש גרסה לממ"ד או לחברה הערבית, ומחליפים קישור לפי המגזר.</div>':''}
+  ${sec('cl-a','#7A3E80','#F5EDF6','bead-3.webp','אשכול א · לחשוב טוב: צעדים להתמודדות יעילה','חרוז "הכוח" · ממשיך את "סימן שאלה, סימן קריאה" משיעור 4','מבוסס על תוכנית "חוסן חינוך", מרכז חוסן ע"ש כהן האריס. שלושה שיעורים ברצף.',[
+    ['הפיל והיתד','מזהים מחשבות מכשילות, שמופיעות כמו עובדה ומשנות את מצב הרוח לרעה. "רשת ללכידת מחשבות", "מחשבה = עובדה?", ומשל הפיל שלא בורח מהיתד הקטנה כי הוא מאמין שהוא לא יכול. כל אחד/ת כותב/ת על פתק את ה"יתד" שלו/ה.','מחשבה אינה עובדה.','8Grade/Mamlachti/Lachshov_Tov_Pil_Veyated_1.pptx'],
+    ['1, 2, 3, 4: צעדים להתמודדות יעילה','מודל ארבעת הצעדים: (1) מזהים את המחשבה שמסתיימת בסימן קריאה; (2) מחליפים בסימן שאלה; (3) מנסחים כמחשבה או הרגשה של "עכשיו" ומכירים בתחושה; (4) מזדקפים, בוחרים לא לתת לה לנהל אותי, ופונים לפעולה הנכונה לי כרגע. הדגמה ("בטוח אכשל בבחינה!") ותרגול בזוגות.','לא ניתן למחשבה לנהל אותנו. אנחנו ננהל את המחשבות.','8Grade/Mamlachti/Lachshov_Tov_4_Zeadim_2.pptx'],
+    ['מודל ארבעת הצעדים: תרגול','מתי משתמשים במודל (כשההרגשה משתנה פתאום לרעה, כשמוצפים). תרגול על "לא קיבלתי ציון טוב במבחן", הכנת "ערכת ארבעת הצעדים" אישית, ועזרה הדדית בקבוצות קטנות. רעיונות ליישום: פוסטר כיתתי ושיתוף ההורים.','רגשות ומחשבות "תוקעים" הם זמניים, ויש לנו יכולת לשנות אותם.','8Grade/Mamlachti/Lachshov_Tov_Tirgul_Model_3.pptx']])}
+  ${sec('cl-b','#C2405F','#FCEEF1','bead-1.webp','אשכול ב · מקורות האושר בחיי','חרוז "הטוב" · ממשיך את דגלוני השמחה משיעור 1','',[
+    ['מהו אושר?','"רגע של אושר", ועבודה בארבע קבוצות: דף מידע מהפסיכולוגיה החיובית, היגדים על אושר, תמונות שמייצגות אושר, ראיונות בזוגות. הצגת תוצרים ותרגול חיפוש רגע קטן של סיפוק או שמחה מהיום.','תחושת האושר היא בידינו, ואפשר לתרגל ולפתח אותה.','9Grade/Mamlachti/Osher_1.pptx'],
+    ['להוסיף אושר לחיים','"עיגולי השמחה" (אפשר עם "שמחות קטנות"). 10-15 מקורות אושר ממוינים בטבלה: לבד, עם חברים, עם המשפחה. שיתוף בקבוצות ובחירת תחום להרחיב. "טיפת אושר" אישית וטיפה כיתתית ללוח "מייצרים אושר בכיתה".','האושר נמצא בדברים הקטנים, ואנחנו יכולים להגדיל אותו במעשים שלנו.','9Grade/Mamlachti/Osher_2.pptx']])}
+  ${sec('cl-c','#0E7C8C','#E8F5F7','bead-2.webp','אשכול ג · ערכים במשפחה','חרוז "הקשר" · ממשיך את "הרשת שמחזיקה אותי" משיעור 2','',[
+    ['חפץ, לב','לקראת השיעור מביאים חפץ משפחתי או תמונה שלו. נזכרים בחפץ אהוב מהילדות, לומדים שחפץ יכול להיות "גשר" לאדם, לתקופה או לרגש, ומספרים בקבוצות את סיפור החפץ. המושג "ערך סנטימנטלי" ופעילויות משפחתיות בעלות ערך כזה.','זיכרונות וחפצים משפחתיים מחזקים זהות, שייכות וחוסן.','7Grade/Mamlachti/Mishpacha_HefezLev.pptx']])}
+  ${sec('cl-d','#5B3C91','#F0ECF7','bead-5.webp','אשכול ד · ליצור משמעות','חרוז "העזרה" · ממשיך את "חבר בשביל חבר" ו"חוט מחבר" משיעור 5','',[
+    ['משמעות: הדברים החשובים באמת','"אי המטמון שלי": מה הייתי לוקח/ת לאי בודד ולמה. צרכים בסיסיים (ביטחון, שייכות, הערכה עצמית) לעומת צרכים מיטביים. קלפי "חשוב לי" ושיתוף בשלשות, עם שאלות התעניינות בלי שיפוט. לסיום: "ראש דשא" לפתקי תזכורת או טפט לטלפון עם המטרה האישית.','מטרות ודברים שחשובים לנו באמת נותנים לחיים תכלית ומשמעות.','8Grade/Mamlachti/Mashmaut_DvarimHashuvim.pptx'],
+    ['משמעות: מייצרים ערך ומשמעות','הסרטון "גברת עם סלים" ושאלה מה מרוויחים כולם. בקבוצות בוחרים פעילות נתינה למען הכיתה, מחלקים תפקידים ומתחילים לתכנן. המילה "נתן", שנקראת זהה משני הכיוונים: בנתינה גם הנותן וגם המקבל מרוויחים. המשך: נתינה בבית הספר ובקהילה.','אנחנו מרגישים בעלי ערך ומשמעות כשאנחנו נותנים, תורמים ומשפיעים לטובה על אחרים.','8Grade/Mamlachti/Mashmaut_Erech.pptx']])}</div>`;
+}
+function viewPrint(){
+  const framed = window.self !== window.top;
+  return `<div class="printbar">${framed?'<span class="note">להדפסה או לשמירה כ-PDF, פתחו את האתר בכתובת הקבועה שלו ולחצו כאן על "הדפסה".</span>':'<button class="btn solid big" type="button" id="doPrint">הדפסה / שמירה כ-PDF</button>'}</div>
+  <article class="doc">
+  <div class="row" style="gap:24px"><img src="${IMG('logo-nophone.webp')}" alt="הלוגו של חני בלוי" style="width:140px;height:auto"><div><div style="font-size:14px;color:var(--olive);font-weight:500">יחידת לימוד · כיתות ז'-ח' · חמישה מפגשים של 45 דקות</div><h1 style="font-size:44px">חוט של תקווה</h1><div style="font-size:17px">חוסן, שייכות ופנייה לעזרה, עבור עצמנו ועבור חברים</div></div></div>
+  <img src="${IMG('cover.webp')}" alt="שתי ידיים קושרות חוט זהב עדין" style="display:block;width:100%;height:auto;margin-top:16px">
+  <h2>לפני שמתחילים · ליועץ/ת</h2>
+  <p>היחידה יכולה לשמש כהתערבות כיתתית מכוונת בעקבות חשיפה לאירוע (6.2) או כיחידת מניעה כללית. בשני המקרים, בכיתה לא מדברים על האירוע ולא על אובדנות. מדברים על התמודדות עם קושי, על כוחות ועל פנייה לעזרה.</p>
+  <div class="box"><div><span class="cb"></span>ההחלטה להפעיל את היחידה התקבלה בצל"ח, לאחר היוועצות עם פסיכולוג/ית השפ"ח ו/או מדריך/ת היחידה בשפ"י.</div><div><span class="cb"></span>מופו מעגלי החשיפה והפגיעות. תלמידים במעגל הקרוב קיבלו קודם מענה פרטני, ונבחן עם הצוות אם ואיך ישתתפו.</div><div><span class="cb"></span>הנחיה משותפת: יועץ/ת ומחנך/ת הכיתה.</div><div><span class="cb"></span>נקבע "מקום בטוח לצאת אליו" ואיש צוות זמין בזמן השיעור.</div><div><span class="cb"></span>ההורים יודעו מראש.</div><div><span class="cb"></span>נבחר פתיח לשיעור הראשון.</div><div><span class="cb"></span>הוכנו חומרי החוט: חוט כותנה בעובי בינוני (זהב או חרדל), חוט זהב, חרוזי פוני 6x9 מ"מ בחמשת הצבעים (כ-35 מכל צבע), מעטפות, תגיות קרטון, מספריים.</div></div>
+  <div class="gl"><strong>הנחיה בטיחותית:</strong> התוצר הוא צמיד או מחזיק מפתחות בלבד. לא מכינים שרשרת או שום דבר שנענד על הצוואר, ולא תולים חוטים ארוכים בכיתה. אורך החוט האישי עד כ-60 ס"מ. אין צורך להסביר זאת לתלמידים.</div>
+  <div class="box"><strong style="color:var(--bordeaux)">מה עושים עכשיו · נוהל 6.1 בקצרה</strong>, למקרה שתלמיד/ה מגלה מצוקה בזמן השיעור: לא משאירים לבד · מתייעצים לפני השיחה · שיחה אישית מיידית · יידוע הורים.<br><strong style="color:var(--olive)">גורמי סיוע:</strong> קול לכולם, מוקד התמיכה הרגשית של משרד החינוך 6312* · ער"ן 1201 · מוקד 105 · סה"ר · Yelem · משטרה 100 · השירות הפסיכולוגי החינוכי ברשות. (לוודא שהפרטים עדכניים ביום ההעברה.)</div>
+
+  <h2>מפגש 1 · החוט הראשון: מה עושה לי טוב</h2>
+  <p><strong>הקשר:</strong> הטוב · <strong>החרוז:</strong> צהוב חרדל · <strong>מטרות:</strong> מקום לרגעים טובים ביומיום; שמחה ועצב על רצף; מרחב בטוח ולכידות.</p>
+  <h3>פתיח (5') · לבחירת היועץ/ת</h3>
+  <p><strong>א. פקעת החוטים (מומלץ):</strong> מעגל. הראשון/ה מחזיק/ה את קצה החוט ומשלים/ה "אני מרגיש/ה מחובר/ת היום ל... כי...", זורק/ת את הפקעת הלאה ומחזיק/ה בחוט, עד שכולם מחזיקים. שואלים: "מה קורה לרשת כשמישהו עוזב את החוט? ומה קורה כשכולם מושכים קצת?" בסוף גוזרים את הרשת, וכל תלמיד/ה נשאר/ת עם חוט של כ-60 ס"מ. המסר: "החוט האישי שלך נולד מהרשת של כולנו".</p>
+  <div class="gl">מי שמתקשה יכול/ה לומר "אני מרגיש/ה מחובר/ת לכיתה הזו". גרסה דיגיטלית: מנטימטר שנבנה לרשת. אם נבחר פתיח אחר, החוטים מחולקים חתוכים בסוף השיעור.</div>
+  <p><strong>ב. קופסת האוצרות:</strong> חפצים סמליים (זרע, פלסטר, מפתח, מצפן, פקעת חוט, נר). כל אחד/ת בוחר/ת חפץ שמזכיר משהו שעוזר לו/ה. מתאים במיוחד לכיתה ו'.</p>
+  <p><strong>ג. מצלמת הרגע הטוב:</strong> תמונה או ציור של רגע קטן וטוב מהשבוע בפאדלט, בלי פנים. חלופה לא דיגיטלית: ציור על פתק.</p>
+  <h3>ההסכמות שלנו (5')</h3><p>הכיתה מנסחת 3-4 הסכמות. המנחה מוודא/ת: הקשבה, כבוד, מה שנאמר כאן נשאר כאן, מדברים על עצמנו.</p>
+  <h3>דגלוני השמחה (15')</h3><p>3 דברים קטנים שעושים לי טוב, ועוד דבר אחד. דגלון פיזי או פוסט אנונימי ב"קיר השמחה" בפאדלט (פיקוח מופעל). שאלות: איזה צבע יש לשמחה שלך? עם מי היית? מה שומר עליה?</p>
+  <h3>ציר השמחה (8')</h3><p>חבר/ה שלח/ה לי הודעה מצחיקה · ירד גשם בדיוק בהפסקה · יוצאים לפעילות כיתתית מחוץ לכיתה · ארוחת ערב משפחתית ביחד. המסר: אותו אירוע נחווה אחרת, ולפרשנות שלנו יש השפעה.</p>
+  <h3>שיחה וקושרים קשר ראשון (5')</h3><p><strong>מסר מרכזי:</strong> יש מקום גם לשמחה וגם לעצב. כשאני שם/ה לב לרגעים הטובים הקטנים, הם נותנים לי כוח. כל תלמיד/ה קושר/ת חרוז צהוב חרדל. מה לקחתי היום? מילה אחת לעצמי.</p>
+  <div class="gl"><strong>יסודי:</strong> פתיח ב', ציר עם פרצופים, פחות דיון.</div>
+
+  <h2>מפגש 2 · הרשת שמחזיקה אותי</h2>
+  <p><strong>הקשר:</strong> הקשר · <strong>החרוז:</strong> בורדו · <strong>מטרות:</strong> מודעות לאנשים שאני משתף/ת; הבנה שיש מצבים שמחייבים מבוגר ולפעמים איש מקצוע.</p>
+  <p><strong>פתיח "דמות עבורי" (5'):</strong> "חשבו על אדם אחד שהוא שם בשבילכם. מה יש בו?" תכונה אחת במנטימטר, בלי שם.</p>
+  <p><strong>הרשת שלי (20'):</strong> רשת הביטחון של הלוליינים. במרכז אני, וסביבי: משפחה, חברים, מבוגרים בבית הספר, אנשי מקצוע, אחרים. המנחה מקריא/ה "רגעים", והתלמידים מותחים קווים. <strong>הרשת נשארת אצל התלמיד/ה.</strong></p>
+  <p><strong>רגעים:</strong> קיבלתי תעודת הצטיינות; אחותי מתחתנת; עברנו דירה; רבתי עם החבר/ה הכי טוב/ה; מרגיש/ה שאין לי חברים אמיתיים; סבתא חלתה; נכשלתי במבחן חשוב; התקבלתי לנבחרת או לחוג; מישהו פגע בי ברשת. במגזר הכללי בלבד, כאופציה: "התאהבתי", "הצעתי חברות".</p>
+  <div class="gl">לא לכלול אירוע שמהדהד את אירוע החשיפה.</div>
+  <p><strong>מה הרשת מלמדת אותי (12'):</strong> איפה הרשת צפופה ואיפה דלילה? מה עוזר ומה מעכב? את מי הייתי רוצה להוסיף?</p>
+  <p><strong>מסר מרכזי (3'):</strong> לפעמים פנייה לא מצליחה בפעם הראשונה; יש מצבים שצריך איש מקצוע. <strong>קושרים קשר שני:</strong> "הקשר", חרוז בורדו.</p>
+  <div class="gl"><strong>יסודי:</strong> 6-8 רגעים פשוטים, רשת עם 3 טבעות.</div>
+
+  <h2>מפגש 3 · הכוחות שכבר יש בי</h2>
+  <p><strong>הקשר:</strong> הכוח · <strong>החרוז:</strong> ירוק זית · <strong>מטרות:</strong> זיהוי חוזקות; הבנה שחלק מהכוחות כבר בנו; לימוד מהחברים.</p>
+  <p><strong>המסע לארץ עוץ (8'):</strong> תקציר במילים של המנחה, בלי קטעי סרט. "איזה כוח הם גילו שכבר היה בהם?"</p>
+  <p><strong>כף היד שלי (12'):</strong> בכל אצבע כוח אחד שלי, ובאמצע: מי או מה נותן לי כוח.</p>
+  <p><strong>מראה מחמיאה (12'):</strong> כל תלמיד/ה כותב/ת כוח שהוא/היא רואה בשני חברים. המנחה מסנן/ת לפני הצגה.</p>
+  <p><strong>מה שומר עליי (8'):</strong> רשימה כיתתית של "דברים שעוזרים לנו בימים קשים". המנחה משלים/ה מה שחסר.</p>
+  <p><strong>מסר מרכזי:</strong> הכוחות כבר בתוכנו, ואפשר ללמוד מהכוחות של החברים. <strong>קושרים קשר שלישי:</strong> "הכוח", חרוז ירוק זית.</p>
+  <div class="gl"><strong>יסודי:</strong> כף יד מאוירת וצביעה.</div>
+
+  <h2>מפגש 4 · הפצע והדרך לרפא</h2>
+  <p><strong>הקשר:</strong> הריפוי · <strong>החרוז:</strong> ורוד עתיק · <strong>מטרות:</strong> לגיטימציה לכאב; היכרות עם חשיבה "שחור-לבן" בזמן לחץ ותרגול ראיית אפשרויות; למי פונים; לא להישאר לבד.</p>
+  <div class="gl"><strong>הנחיה למנחה:</strong> לא פותחים את נושא האובדנות. אם תלמיד/ה מעלה אותו, עונים בקצרה וברוגע לפי נספח 4 (מקשיבים, לא שופטים, מראים שיש אלטרנטיבות, מפנים לעזרה), מחזירים בעדינות לפנייה לעזרה ולכוחות, ואחרי השיעור פועלים לפי נוהל 6.1.</div>
+  <p><strong>שקף שער:</strong> "גם עץ נפצע. ומהמקום שבו נפצע, לפעמים דווקא צומחים עלים חדשים."</p>
+  <p><strong>קריאת השיר "פצע" מאת עודד מבורך (7'):</strong> מילות השיר לא מוטמעות. קישור לקריאה: https://canva.link/e4v7t5h7p03s9h7</p>
+  <div class="gl">בשיר יש דימויים חזקים. מקריאים בקול רגוע, לא נעצרים עליהם, ומפנים את הדיון לשאלות של תגובה, קרבה ועזרה.</div>
+  <p><strong>שאלות לדיון:</strong> איזה סוגי פצעים פגשנו? (בלי פירוט אישי) · כשאני פוגש/ת פצע של מישהו אחר, מה אני עושה, ומה עוזר לי להתקרב? · מה יכול להיות החוט שמחבר אותי למי שכואב לו? · מי האדם שאומר לי "זה יעבור"? (תפקידים, לא שמות)</p>
+  <p><strong>ערכת עזרה ראשונה (10'):</strong> פצע בגוף: מה מנקה, מה מגן, מתי צריך רופא. פצע בלב: מה עוזר לבד, מתי חבר, מתי מבוגר, מתי איש מקצוע.</p>
+  <p><strong>סימן שאלה, סימן קריאה (12'):</strong> בזוגות מחליפים את סימן הקריאה בסימן שאלה ומחפשים שתי אפשרויות.</p>
+  <p><strong>מי יכול לעזור לי כשיש לי פצע? (10'):</strong> מפת דמויות ותפקידים בבית הספר ומחוצה לו.</p>
+  <p><strong>סגירה (6'):</strong> "אף פעם לא להישאר לבד, לא עם הפצע שלי ולא עם הפצע של החבר שלי." <strong>קושרים קשר רביעי:</strong> "הריפוי", חרוז ורוד עתיק.</p>
+  <div class="gl"><strong>יסודי:</strong> לא קוראים את השיר במלואו; מתחילים מהשאלה שפותחת אותו ומהשאלה שחותמת אותו, ועוברים לערכת העזרה. בלי פעילות סימן שאלה.</div>
+
+  <h2>מפגש 5 · חבר בשביל חבר</h2>
+  <p><strong>הקשר:</strong> העזרה · <strong>החרוז:</strong> זהב · <strong>מטרות:</strong> להבחין בין שיתוף מבוגר ל"הלשנה"; לתרגל ניסוח פנייה; להכיר גורמי סיוע; לסגור את החוט.</p>
+  <p><strong>סוד או דאגה? (6'):</strong> חבר מתכנן מסיבת הפתעה · חבר סיפר שמציקים לו ברשת וביקש שלא אגלה · חברה אומרת שאין לה כוח לכלום כבר שבועיים · חברה קנתה מתנה לאמא שלה · חבר נכשל במבחן ומתבייש לספר בבית.</p>
+  <p><strong>הסיפור של נועם (12'):</strong> נועם שם לב שהחבר שלו נהיה שקט, מוותר על אימונים, וכתב לו "עזוב, זה לא משנה" (בכיתת בנות: נועם וחברתה, "עזבי, זה לא משנה"). מה ראיתי, מה אני מרגיש/ה, מה יכול לעזור? המסר: לשתף מבוגר כשחבר במצוקה זו לא "הלשנה", זו אכפתיות וחברות אמיתית.</p>
+  <p><strong>גשר המילים (8'):</strong> פתיחה, מה ראיתי, מה מדאיג אותי, מה אני מבקש/ת.</p>
+  <p><strong>החוט המשולש (15'):</strong> חרוז זהב "העזרה". צמה משלושה חוטים: החוט שלי, חוט הרשת, חוט הזהב. "החוט המשולש לא במהרה יינתק" (קהלת ד, יב). תגית "החוט שלי" עם גורמי הסיוע.</p>
+  <p><strong>חוט מחבר (רשות):</strong> חוט זהב קצר במעטפה, לתת למישהו קרוב, כמו "אני כאן בשבילך".</p>
+  <p><strong>סגירה "לקום מחר בבוקר" (3-5'):</strong> מילים ולחן: נעמי שמר. להאזנה: https://www.youtube.com/watch?v=6MoC6RETWhQ · קליפ "תקווה אחרי 7.10" (רשות, בשיקול דעת): https://www.youtube.com/watch?v=-P0Gnvk5Kmk</p>
+  <div class="gl"><strong>לפני שבוחרים קישור:</strong> הקליפ כולל תמונות רגישות מ-7.10. חובה לצפות בו לפני השיעור. מומלץ להשתמש בביצוע השיר בהתערבות 6.2, כשיש בכיתה תלמידים שחוו אובדן, פגיעה או פינוי, כשאין זמן לשיחה אחרי הצפייה, או בכיתה ו'.</div>
+
+  <h2>דפים להדפסה</h2>
+  <h3>דף הרשת (מפגש 2)</h3>
+  <svg viewBox="0 0 650 560" style="width:100%;max-width:650px;height:auto" role="img" aria-label="דף הרשת: מעגלים סביב המילה אני"><circle cx="325" cy="280" r="265" fill="none" stroke="#5C6228" stroke-width="1.5" stroke-dasharray="6 6"></circle><circle cx="325" cy="280" r="205" fill="none" stroke="#5C6228" stroke-width="1.5"></circle><circle cx="325" cy="280" r="145" fill="none" stroke="#7D1C2A" stroke-width="1.5"></circle><circle cx="325" cy="280" r="85" fill="none" stroke="#7D1C2A" stroke-width="1.5"></circle><circle cx="325" cy="280" r="34" fill="#F6ECEA" stroke="#7D1C2A" stroke-width="2"></circle><text x="325" y="288" text-anchor="middle" font-family="Rubik, sans-serif" font-size="20" font-weight="700" fill="#7D1C2A">אני</text><text x="325" y="215" text-anchor="middle" font-family="Rubik, sans-serif" font-size="15" fill="#2B2422">משפחה</text><text x="325" y="155" text-anchor="middle" font-family="Rubik, sans-serif" font-size="15" fill="#2B2422">חברים</text><text x="325" y="95" text-anchor="middle" font-family="Rubik, sans-serif" font-size="15" fill="#2B2422">מבוגרים בבית הספר</text><text x="325" y="35" text-anchor="middle" font-family="Rubik, sans-serif" font-size="15" fill="#2B2422">אנשי מקצוע ועוד אנשים שחשובים לי</text></svg>
+  <h3>כף היד שלי (מפגש 3)</h3>
+  <div class="row" style="align-items:flex-start;gap:24px"><img src="${IMG('l3-my-hand.webp')}" alt="כף יד פתוחה" style="width:220px;height:auto"><div style="line-height:2.4;flex:1;min-width:200px"><div>אגודל: ______________________</div><div>אצבע: ______________________</div><div>אמה: _______________________</div><div>קמיצה: _____________________</div><div>זרת: _______________________</div><div>בכף: מי או מה נותן לי כוח? ____________</div></div></div>
+  <h3>כרטיסיות סימן שאלה, סימן קריאה (מפגש 4)</h3>
+  <div class="row3"><div class="box"><strong>אף אחד לא מבין אותי!</strong><br>אף אחד לא מבין אותי?<br>_____________<br>_____________</div><div class="box"><strong>זה לעולם לא ישתנה!</strong><br>זה לעולם לא ישתנה?<br>_____________<br>_____________</div><div class="box"><strong>כולם נגדי!</strong><br>כולם נגדי?<br>_____________<br>_____________</div></div>
+  <h3>קרשי גשר המילים (מפגש 5)</h3>
+  <div class="row2"><div class="box"><strong>פתיחה</strong><br>"אפשר לדבר איתך רגע?"</div><div class="box"><strong>מה ראיתי</strong><br>"שמתי לב ש..."</div><div class="box"><strong>מה מדאיג אותי</strong><br>"אני דואג/ת כי..."</div><div class="box"><strong>מה אני מבקש/ת</strong><br>"אני רוצה ש..."</div></div>
+  <h3>תגית "החוט שלי" (מפגש 5)</h3>
+  <div class="row"><div style="width:240px;height:150px;border:1.5px dashed var(--bordeaux);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="font-family:var(--display);font-weight:700;font-size:26px;color:var(--bordeaux)">החוט שלי</span><span style="font-size:13px">הטוב · הקשר · הכוח · הריפוי · העזרה</span></div><div style="width:240px;height:150px;border:1.5px dashed var(--bordeaux);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5"><strong>תמיד יש למי לפנות:</strong><br>קול לכולם 6312* · ער"ן 1201 · מוקד 105 · סה"ר · Yelem · משטרה 100 · היועץ/ת בבית הספר</div></div>
+
+  <h2>מכתבים להורים</h2>
+  <img src="${IMG('parents-header.webp')}" alt="" style="display:block;width:100%;height:auto">
+  <p>הורים יקרים, שלום רב,</p>
+  <p>השבוע פתחנו בכיתה יחידה חדשה בשם <strong style="color:var(--bordeaux)">"חוט של תקווה"</strong>. בחמישה מפגשים נעסוק בשמחה ובתקווה, בשייכות, בכוחות האישיים שלנו, בהתמודדות עם רגעים לא פשוטים ובפנייה לעזרה, עבור עצמנו ועבור חברים.</p>
+  <p>בכל מפגש כל תלמיד/ה קושר/ת חרוז צבעוני לחוט אישי. בסוף היחידה החוט יהפוך לצמיד או למחזיק מפתחות קטן, תזכורת לכוחות ולאנשים שמחזיקים אותנו.</p>
+  <p><strong>מה עשינו היום:</strong> גילינו מה עושה לנו טוב, ניסחנו יחד את ההסכמות של הכיתה, וראינו שיש מקום גם לשמחה וגם לעצב. <strong>הקשר שנקשר היום:</strong> "הטוב", חרוז צהוב חרדל. <strong>שאלה אחת לשיחה בבית:</strong> מה היה הרגע הכי טוב שלך השבוע?</p>
+  <p>נשמח לעמוד לרשותכם בכל שאלה ובכל צורך. בברכה, [שם היועץ/ת] · [דרך ליצירת קשר]</p>
+  <div class="box"><strong style="color:var(--bordeaux)">מפגש 2.</strong> דיברנו על האנשים שהם שם בשבילנו, וכל תלמיד/ה בנה/תה "רשת ביטחון" אישית. הקשר: "הקשר", חרוז בורדו. שאלה לבית: מי היה שם בשבילכם כשהייתם בגילנו?</div>
+  <div class="box"><strong style="color:var(--bordeaux)">מפגש 3.</strong> גילינו כוחות שכבר יש בנו, ושמענו מחברים אילו כוחות הם רואים בנו. הקשר: "הכוח", חרוז ירוק זית. שאלה לבית: איזה כוח אתם רואים בי?</div>
+  <div class="box"><strong style="color:var(--bordeaux)">מפגש 4.</strong> דיברנו על כך שגם כאב הוא חלק מהחיים, על מה שעוזר לרפא, ועל האנשים שאפשר לפנות אליהם. הקשר: "הריפוי", חרוז ורוד עתיק. שאלה לבית: מה עזר לכם פעם כשהיה לכם קשה?</div>
+  <div class="box"><strong style="color:var(--bordeaux)">מפגש 5.</strong> למדנו את ההבדל בין סוד ששומרים לדאגה שמשתפים מבוגר, תרגלנו איך מבקשים עזרה, וסגרנו את החוט. הקשר: "העזרה", חרוז זהב. שאלה לבית: מה הדבר האחד שהכי ריגש אותך ב"חוט של תקווה"? תודה על השותפות.</div>
+  <p style="margin-top:30px;font-size:13px;color:var(--ink2)"><strong>מקורות:</strong> חוזר מנכ"ל 0473, "אובדנות ילדים ובני נוער: מניעה והתערבות" (30.3.2026) · חומרי שפ"י ("מאגרי כוחות", "הכוחות שבדרך", "זיהוי כוחות אישיים", "כף היד שלי") · חומרי חמ"ד ("מהלב") · המערך המקורי של חני בלוי, "הצעות להתערבות כיתתית" · חומרי ההדרכה של חני בלוי · "פצע": עודד מבורך · "לקום מחר בבוקר": נעמי שמר.</p>
+  </article>`;
+}
+function modalHtml(){
+  if (S.modal==='what') return `<div class="modal" data-close="1"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="mdT"><div class="sh"><h2 id="mdT">מה עושים עכשיו</h2><button class="btn quiet" type="button" data-close="1" style="margin-inline-start:auto">סגירה</button></div><p style="font-size:19px">נוהל 6.1 בקצרה, למקרה שתלמיד/ה מגלה מצוקה בזמן השיעור:</p><ol><li><strong>לא משאירים לבד.</strong> נשארים בקשר עם התלמיד/ה.</li><li><strong>מתייעצים לפני השיחה</strong> עם הפסיכולוג/ית ועם ההנהלה.</li><li><strong>שיחה אישית מיידית</strong>, בחום ובלי שיפוט.</li><li><strong>יידוע הורים</strong>, לפי הנוהל.</li></ol><div class="note"><strong style="color:var(--olive)">גורמי סיוע:</strong> קול לכולם, מוקד התמיכה הרגשית של משרד החינוך 6312* · ער"ן 1201 · מוקד 105 · סה"ר · Yelem · משטרה 100 · השירות הפסיכולוגי החינוכי ברשות.<div style="font-size:14px;color:var(--ink2);margin-top:4px">לוודא שהפרטים עדכניים ביום ההעברה.</div></div></div></div>`;
+  if (S.modal==='sources') return `<div class="modal" data-close="1"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="mdS"><div class="sh"><h2 id="mdS">מקורות</h2><button class="btn quiet" type="button" data-close="1" style="margin-inline-start:auto">סגירה</button></div><ul style="margin:0;padding-inline-start:22px;font-size:19px;line-height:1.7"><li>חוזר מנכ"ל 0473, "אובדנות ילדים ובני נוער: מניעה והתערבות" (30.3.2026)</li><li>חומרי שפ"י: "מאגרי כוחות", "הכוחות שבדרך", "זיהוי כוחות אישיים", "כף היד שלי", "סימן שאלה, סימן קריאה"</li><li>חומרי חמ"ד ("מהלב")</li><li>המערך המקורי של חני בלוי, "הצעות להתערבות כיתתית"</li><li>חומרי ההדרכה של חני בלוי: סדנת הצוותים, מפגש "הקוסם מארץ עוץ"</li><li>השיר "פצע": עודד מבורך · "לקום מחר בבוקר": נעמי שמר</li></ul></div></div>`;
+  return '';
+}
+
+/* ---------- render ---------- */
+const $main = document.getElementById('main'), $tabs = document.getElementById('tabs'), $modal = document.getElementById('modal');
+const $g = document.getElementById('tgGuide'), $b = document.getElementById('tgBasic');
+function render(scrollTop){
+  $tabs.innerHTML = TABS.map(([id,label,b])=>`<li><a href="#${id}" ${S.tab===id?'aria-current="page"':''}>${b?`<img src="${IMG(b)}" alt="">`:''}${label}</a></li>`).join('');
+  const inLesson = /^lesson\d$/.test(S.tab);
+  $b.hidden = !inLesson;
+  $b.setAttribute('aria-pressed', S.basic); $b.classList.toggle('on', S.basic);
+  $g.setAttribute('aria-pressed', S.guide); $g.classList.toggle('on', S.guide);
+  let html;
+  if (S.tab==='counselor') html = viewCounselor();
+  else if (inLesson) html = viewLesson(+S.tab.slice(6));
+  else if (S.tab==='strengths') html = viewStrengths();
+  else if (S.tab==='print') html = viewPrint();
+  else html = viewHome();
+  $main.innerHTML = html;
+  $modal.innerHTML = modalHtml();
+  const cur = $tabs.querySelector('[aria-current="page"]');
+  if (cur && cur.scrollIntoView) { try { cur.scrollIntoView({block:'nearest', inline:'nearest'}); } catch(e){} }
+  if (scrollTop) window.scrollTo(0,0);
+}
+function renderSlideOnly(){ if (/^lesson\d$/.test(S.tab)) { const y = window.scrollY; render(false); window.scrollTo(0,y); } }
+function fromHash(){
+  const h = (location.hash||'').replace('#','');
+  if (['cl-a','cl-b','cl-c','cl-d'].includes(h)) { if (S.tab!=='strengths'){ S.tab='strengths'; render(true); } const el=document.getElementById(h); if(el) el.scrollIntoView({behavior:'smooth'}); return; }
+  S.tab = TABS.some(t=>t[0]===h) ? h : 'home';
+  render(true);
+}
+window.addEventListener('hashchange', fromHash);
+
+/* ---------- events ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('button, a, .modal');
+  if (!t) return;
+  if (t.dataset.close && (e.target===t || t.tagName==='BUTTON')) { S.modal=null; $modal.innerHTML=''; return; }
+  if (t.id==='tgGuide'){ S.guide=!S.guide; persist(); renderSlideOnly(); if(!/^lesson/.test(S.tab)) render(false); return; }
+  if (t.id==='tgBasic'){ S.basic=!S.basic; persist(); renderSlideOnly(); return; }
+  if (t.id==='openWhat'){ S.modal='what'; $modal.innerHTML=modalHtml(); return; }
+  if (t.id==='doPrint'){ window.print(); return; }
+  if (t.dataset.modal){ S.modal=t.dataset.modal; $modal.innerHTML=modalHtml(); return; }
+  if (t.dataset.set){ S[t.dataset.set]=t.dataset.val; persist(); render(false); return; }
+  if (t.dataset.jump){ e.preventDefault(); const el=document.getElementById(t.dataset.jump); if(el) el.scrollIntoView({behavior:'smooth'}); return; }
+  const lm = /^lesson(\d)$/.exec(S.tab); if (!lm) return;
+  const n = +lm[1], st = L[n], ids = lessonIds(n);
+  if (t.dataset.nav){ st.k = Math.max(0, Math.min(ids.length-1, Math.min(st.k, ids.length-1) + (+t.dataset.nav))); renderSlideOnly(); return; }
+  if (t.dataset.go){ st.k = +t.dataset.go; renderSlideOnly(); return; }
+  const a = t.dataset.act, g = t.dataset.arg; if (!a) return;
+  switch(a){
+    case 'tie': st.tied=true; S.done[n-1]=true; persist(); break;
+    case 'opener': st.opener=g; st.q=false; st.k=ids.indexOf('opener'); break;
+    case 'q': st.q=true; break;
+    case 'agree': st.agree[+g]=!st.agree[+g]; break;
+    case 'flagN': st.flagN++; break;
+    case 'scaleMsg': st.scaleMsg=true; break;
+    case 'm': st.m=Math.max(0,st.m+(+g)); break;
+    case 'lq': st.lq++; break;
+    case 'pick': st.picked[g]=!st.picked[g]; break;
+    case 'pi': st.pi++; break;
+    case 'dq': st.dq=Math.max(0,st.dq+(+g)); break;
+    case 'flip': st.flipped[+g]=!st.flipped[+g]; break;
+    case 'sc': st.sc=Math.max(0,st.sc+(+g)); break;
+    case 'vote': st.vote[Math.min(st.sc, S.basic?1:4)]=g; break;
+    case 'ni': st.ni++; break;
+    case 'noamMsg': st.noamMsg=true; break;
+    case 'plank': st.planks[g]=!st.planks[g]; break;
+    case 'bv': st.votes[+g]++; break;
+    case 'rc': st.rc[+g]=!st.rc[+g]; break;
+  }
+  renderSlideOnly();
+});
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset.check!==undefined) return;
+  const lm = /^lesson(\d)$/.exec(S.tab); if (!lm) return;
+  const st = L[+lm[1]];
+  if (t.dataset.input) st[t.dataset.input]=t.value;
+  if (t.dataset.range!==undefined) st.scale[+t.dataset.range]=+t.value;
+});
+document.addEventListener('change', e => { const t=e.target; if (t.dataset.check!==undefined){ S.checks[+t.dataset.check]=t.checked; persist(); render(false); } });
+document.addEventListener('submit', e => {
+  e.preventDefault();
+  if (e.target.dataset.form==='keep'){ const st=L[3]; const v=(st.draft||'').trim(); if(v){ st.keeps.push(v); st.draft=''; renderSlideOnly(); const f=document.getElementById('l3draft'); if(f) f.focus(); } }
+});
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape' && S.modal){ S.modal=null; $modal.innerHTML=''; return; }
+  const lm = /^lesson(\d)$/.exec(S.tab); if (!lm || S.modal) return;
+  if (/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||''))) return;
+  const n=+lm[1], st=L[n], ids=lessonIds(n);
+  if (e.key==='ArrowLeft' || e.key==='PageDown'){ st.k=Math.min(ids.length-1, Math.min(st.k,ids.length-1)+1); renderSlideOnly(); e.preventDefault(); }
+  if (e.key==='ArrowRight' || e.key==='PageUp'){ st.k=Math.max(0, Math.min(st.k,ids.length-1)-1); renderSlideOnly(); e.preventDefault(); }
+});
+fromHash();
+})();
+</script>
+
+</body>
+</html>
